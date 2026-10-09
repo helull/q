@@ -1,0 +1,22 @@
+[
+  { "left": "5 % økning", "right": "1,05" },
+  { "left": "8 % økning", "right": "1,08" },
+  { "left": "10 % økning", "right": "1,10" },
+  { "left": "12 % økning", "right": "1,12" },
+  { "left": "20 % økning", "right": "1,20" },
+  { "left": "25 % økning", "right": "1,25" },
+  { "left": "3 % nedgang", "right": "0,97" },
+  { "left": "8 % nedgang", "right": "0,92" },
+  { "left": "15 % nedgang", "right": "0,85" },
+  { "left": "20 % nedgang", "right": "0,80" },
+  { "left": "30 % nedgang", "right": "0,70" },
+  { "left": "40 % nedgang", "right": "0,60" },
+  { "left": "Finn ny verdi etter 5 % økning", "right": "Gange med 1,05" },
+  { "left": "Finn ny verdi etter 20 % økning", "right": "Gange med 1,20" },
+  { "left": "Finn ny verdi etter 15 % nedgang", "right": "Gange med 0,85" },
+  { "left": "Finn ny verdi etter 30 % nedgang", "right": "Gange med 0,70" },
+  { "left": "Finn startverdien etter 10 % økning", "right": "Dele på 1,10" },
+  { "left": "Finn startverdien etter 20 % økning", "right": "Dele på 1,20" },
+  { "left": "Finn startverdien etter 20 % nedgang", "right": "Dele på 0,80" },
+  { "left": "Finn startverdien etter 40 % nedgang", "right": "Dele på 0,60" }
+]
