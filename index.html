@@ -5,28 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Match-spill</title>
 
-   <link rel="stylesheet" href="style.
-</head>
+<link rel="stylesheet" href="style.css">
+
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Match-spill</h1>
+    <h1>🎯 Match-spill</h1>
 
-        <div id="timer">Tid: 0 s</div>
-
+    <div class="topbar">
+        <div id="timer">Tid: 0 sek</div>
         <button id="restartBtn">Start på nytt</button>
+    </div>
 
-        <div class="game">
-            <div id="leftColumn" class="column"></div>
-            <div id="rightColumn" class="column"></div>
+    <div class="game">
+
+        <div class="column">
+            <h2>Oppgaver</h2>
+            <div id="leftColumn"></div>
         </div>
 
-        <div id="winner"></div>
+        <div class="column">
+            <h2>Svar</h2>
+            <div id="rightColumn"></div>
+        </div>
 
     </div>
 
-  <script src="script.js"></script>
+    <div id="winner"></div>
 
+</div>
+    
+<script src="script.js"></script>
 </body>
 </html>
