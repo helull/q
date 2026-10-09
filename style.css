@@ -36,10 +36,10 @@ h1 {
     font-size: 1rem;
 }
 
-.game {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+.game{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
 .column {
@@ -78,10 +78,4 @@ h1 {
     text-align: center;
     font-size: 1.5rem;
     font-weight: bold;
-}
-
-@media (max-width:700px) {
-    .game {
-        grid-template-columns: 1fr;
-    }
 }
