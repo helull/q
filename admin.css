@@ -9,19 +9,20 @@ body{
 }
 
 .container{
-    max-width:900px;
+    max-width:1200px;
     margin:auto;
-    padding:30px;
+    padding:15px 20px;
 }
 
 h1{
-    margin-bottom:20px;
+    margin:0 0 10px 0;
+    font-size:1.6rem;
 }
 
 label{
     display:block;
-    margin-top:15px;
-    margin-bottom:5px;
+    margin-top:8px;
+    margin-bottom:4px;
     font-weight:bold;
 }
 
@@ -117,4 +118,11 @@ button:hover{
         position:static;
         max-height:none;
     }
+}
+
+.top-fields{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:15px;
+    margin-bottom:10px;
 }
