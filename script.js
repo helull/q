@@ -28,6 +28,9 @@ const db = getFirestore(app);
    GAME VARIABLES
 -------------------- */
 
+const restartBtn = document.getElementById("restartBtn");
+restartBtn.disabled = true;
+
 let cardsData = [];
 
 let selectedLeft = null;
@@ -86,7 +89,7 @@ function startTimer() {
 -------------------- */
 console.log("doc er", typeof doc);
 async function loadGame(gameId) {
-
+    
     try {
 
         currentGameId = gameId;
@@ -97,7 +100,8 @@ async function loadGame(gameId) {
         selectedRight = null;
 
         winner.textContent = "";
-
+        restartBtn.disabled = true;
+        
         const gameRef = doc(
             db,
             "cardsets",
@@ -277,6 +281,8 @@ function checkMatch() {
 
                 winner.textContent =
                     `🎉 Ferdig! Tid: ${seconds} sekunder`;
+                
+                restartBtn.disabled = false;
             }
 
             clearSelections();
