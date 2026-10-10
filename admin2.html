@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Opprett spill</title>
+
+<link rel="stylesheet" href="admin2.css">
+    
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Opprett nytt spill</h1>
+
+    <label>Spill-ID</label>
+    <input id="gameId"
+           placeholder="f.eks. prosent-vg1">
+
+    <label>Tittel</label>
+    <input id="title"
+           placeholder="f.eks. Prosentregning">
+
+    <label>Lim inn KI-data</label> <span> Du kan lime inn spørsmål/svar i nesten hvilket som helst format. Systemet prøver automatisk å tolke innholdet.</span>
+
+    <textarea
+        id="sourceText"
+        rows="20"
+        placeholder="Spørsmål|Svar"></textarea>
+
+<div id="preview"></div>
+
+<button id="saveBtn">
+    Lagre spill
+</button>
+
+    <div id="status"></div>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
