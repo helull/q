@@ -1,6 +1,6 @@
 [
-  { "left": "5 % økning", "right": "1,05" },
-  { "left": "8 % økning", "right": "1,08" },
+  { "left": "10 % økning", "right": "1,10" },
+  { "left": "1 % økning", "right": "1,01" },
   { "left": "Finn startverdien etter 20 % økning", "right": "Dele på 1,20" },
   { "left": "Finn startverdien etter 20 % nedgang", "right": "Dele på 0,80" },
   { "left": "Finn startverdien etter 40 % nedgang", "right": "Dele på 0,60" }
