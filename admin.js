@@ -59,7 +59,8 @@ async function saveGame(){
         document
         .getElementById("gameId")
         .value
-        .trim();
+        .trim()
+        .toLowerCase();
 
     const title =
         document
