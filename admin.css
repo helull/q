@@ -102,7 +102,8 @@ button:hover{
 }
 
 #sourceText{
-    min-height:600px;
+    height:400px;
+    resize:vertical;
 }
 
 @media (max-width: 900px){
