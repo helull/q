@@ -1,19 +1,28 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+/* --------------------
+   FIREBASE
+-------------------- */
+
+const firebaseConfig = {
     apiKey: "AIzaSyBuBCzDutHiRaueQznBLUZV8gyX_KtPGko",
     authDomain: "quizletformeg.firebaseapp.com",
     projectId: "quizletformeg",
     storageBucket: "quizletformeg.firebasestorage.app",
     messagingSenderId: "9975084319",
     appId: "1:9975084319:web:7c0a0a6802161d1996ac2a"
-  };
+};
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 /* --------------------
    GAME VARIABLES
@@ -73,7 +82,7 @@ function startTimer() {
 }
 
 /* --------------------
-   LOAD GAME FROM FIREBASE
+   LOAD GAME
 -------------------- */
 
 async function loadGame(gameId) {
@@ -89,20 +98,50 @@ async function loadGame(gameId) {
 
         winner.textContent = "";
 
-        const docRef = doc(db, "cardsets", gameId);
+        const gameRef = doc(
+            db,
+            "cardsets",
+            gameId
+        );
 
-        const docSnap = await getDoc(docRef);
+        const gameDoc = await getDoc(gameRef);
 
-        if (!docSnap.exists()) {
+        if (!gameDoc.exists()) {
 
             alert("Fant ikke spill-ID");
 
             return;
         }
 
-        const gameData = docSnap.data();
+        cardsData = [];
 
-        cardsData = gameData.cards;
+        const cardsRef = collection(
+            db,
+            "cardsets",
+            gameId,
+            "cards"
+        );
+
+        const cardsSnapshot =
+            await getDocs(cardsRef);
+
+        cardsSnapshot.forEach(cardDoc => {
+
+            cardsData.push({
+                left: cardDoc.data().left,
+                right: cardDoc.data().right
+            });
+
+        });
+
+        if (cardsData.length === 0) {
+
+            alert(
+                "Ingen kort funnet for dette spillet"
+            );
+
+            return;
+        }
 
         buildBoard();
 
@@ -158,7 +197,7 @@ function buildBoard() {
 }
 
 /* --------------------
-   SELECTION
+   SELECTIONS
 -------------------- */
 
 function clearSelections() {
@@ -166,8 +205,7 @@ function clearSelections() {
     document
         .querySelectorAll(".selected")
         .forEach(card =>
-            card.classList.remove("selected")
-        );
+            card.classList.remove("selected"));
 
     selectedLeft = null;
     selectedRight = null;
@@ -178,8 +216,7 @@ function selectLeft(card, item) {
     document
         .querySelectorAll("#leftColumn .selected")
         .forEach(c =>
-            c.classList.remove("selected")
-        );
+            c.classList.remove("selected"));
 
     card.classList.add("selected");
 
@@ -196,8 +233,7 @@ function selectRight(card, item) {
     document
         .querySelectorAll("#rightColumn .selected")
         .forEach(c =>
-            c.classList.remove("selected")
-        );
+            c.classList.remove("selected"));
 
     card.classList.add("selected");
 
@@ -264,7 +300,8 @@ document
     .addEventListener("click", () => {
 
         const gameId =
-            document.getElementById("gameId")
+            document
+                .getElementById("gameId")
                 .value
                 .trim();
 
