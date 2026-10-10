@@ -24,29 +24,176 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-function parseCards(text){
+function parseCards(text) {
+
+    text = text.trim();
 
     const cards = [];
 
-    const rows = text
-        .split("\n")
-        .filter(row => row.trim());
+    /* -----------------------
+       FORMAT 1
+       spørsmål|svar
+    ----------------------- */
 
-    rows.forEach(row => {
+    if (text.includes("|")) {
 
-        const parts = row.split("|");
+        text.split("\n").forEach(line => {
 
-        if(parts.length !== 2){
-            return;
-        }
+            const parts = line.split("|");
 
-        cards.push({
-            left: parts[0].trim(),
-            right: parts[1].trim()
+            if (parts.length >= 2) {
+
+                cards.push({
+                    left: parts[0].trim(),
+                    right: parts.slice(1).join("|").trim()
+                });
+            }
         });
+
+        if (cards.length > 0) {
+            return cards;
+        }
+    }
+
+    /* -----------------------
+       FORMAT 2
+       spørsmål - svar
+    ----------------------- */
+
+    const dashCards = [];
+
+    text.split("\n").forEach(line => {
+
+        if (line.includes(" - ")) {
+
+            const parts = line.split(" - ");
+
+            if (parts.length >= 2) {
+
+                dashCards.push({
+                    left: parts[0].trim(),
+                    right: parts.slice(1).join(" - ").trim()
+                });
+            }
+        }
     });
 
-    return cards;
+    if (dashCards.length > 0) {
+        return dashCards;
+    }
+
+    /* -----------------------
+       FORMAT 3
+       Spørsmål:
+       Svar:
+    ----------------------- */
+
+    const qaCards = [];
+
+    const lines =
+        text
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line);
+
+    let question = null;
+
+    for (const line of lines) {
+
+        const lower = line.toLowerCase();
+
+        if (
+            lower.startsWith("spørsmål:") ||
+            lower.startsWith("question:")
+        ) {
+
+            question =
+                line.substring(
+                    line.indexOf(":") + 1
+                ).trim();
+
+            continue;
+        }
+
+        if (
+            lower.startsWith("svar:") ||
+            lower.startsWith("answer:")
+        ) {
+
+            const answer =
+                line.substring(
+                    line.indexOf(":") + 1
+                ).trim();
+
+            if (question) {
+
+                qaCards.push({
+                    left: question,
+                    right: answer
+                });
+
+                question = null;
+            }
+        }
+    }
+
+    if (qaCards.length > 0) {
+        return qaCards;
+    }
+
+    /* -----------------------
+       FORMAT 4
+       spørsmål
+
+       svar
+
+       spørsmål
+
+       svar
+    ----------------------- */
+
+    const blocks =
+        text
+        .split(/\n\s*\n/)
+        .map(b => b.trim())
+        .filter(Boolean);
+
+    const blockCards = [];
+
+    for (let i = 0; i < blocks.length - 1; i += 2) {
+
+        blockCards.push({
+            left: blocks[i],
+            right: blocks[i + 1]
+        });
+    }
+
+    if (blockCards.length > 0) {
+        return blockCards;
+    }
+
+    /* -----------------------
+       FORMAT 5
+       annenhver linje
+    ----------------------- */
+
+    const cleanLines =
+        text
+        .split("\n")
+        .map(line => line.trim())
+        .filter(Boolean);
+
+    const pairCards = [];
+
+    for (let i = 0; i < cleanLines.length - 1; i += 2) {
+
+        pairCards.push({
+            left: cleanLines[i],
+            right: cleanLines[i + 1]
+        });
+    }
+
+    return pairCards;
 }
 
 document
