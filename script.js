@@ -1,26 +1,19 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-import {
-    getFirestore,
-    doc,
-    getDoc
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBuBCzDutHiRaueQznBLUZV8gyX_KtPGko",
+    authDomain: "quizletformeg.firebaseapp.com",
+    projectId: "quizletformeg",
+    storageBucket: "quizletformeg.firebasestorage.app",
+    messagingSenderId: "9975084319",
+    appId: "1:9975084319:web:7c0a0a6802161d1996ac2a"
+  };
 
-/* --------------------
-   FIREBASE CONFIG
--------------------- */
-
-const firebaseConfig = {
-    apiKey: "DIN_API_KEY",
-    authDomain: "DITT_PROSJEKT.firebaseapp.com",
-    projectId: "DITT_PROSJEKT",
-    storageBucket: "DITT_PROSJEKT.firebasestorage.app",
-    messagingSenderId: "123456789",
-    appId: "DIN_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
 
 /* --------------------
    GAME VARIABLES
