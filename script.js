@@ -84,7 +84,7 @@ function startTimer() {
 /* --------------------
    LOAD GAME
 -------------------- */
-
+console.log("doc er", typeof doc);
 async function loadGame(gameId) {
 
     try {
