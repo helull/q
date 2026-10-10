@@ -320,7 +320,3 @@ function showPreview() {
 document
     .getElementById("sourceText")
     .addEventListener("input", showPreview);
-
-document
-    .getElementById("previewBtn")
-    .addEventListener("click", showPreview);
