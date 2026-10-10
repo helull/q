@@ -273,3 +273,54 @@ async function saveGame(){
         .textContent =
         `✅ Lagret ${cards.length} kort i '${gameId}'`;
 }
+
+function showPreview() {
+
+    const text =
+        document
+            .getElementById("sourceText")
+            .value;
+
+    const cards =
+        parseCards(text);
+
+    const preview =
+        document
+            .getElementById("preview");
+
+    preview.innerHTML = "";
+
+    if (cards.length === 0) {
+
+        preview.innerHTML =
+            "<p>Fant ingen gyldige kort.</p>";
+
+        return;
+    }
+
+    preview.innerHTML =
+        `<h3>Fant ${cards.length} kort</h3>`;
+
+    cards.forEach((card, index) => {
+
+        preview.innerHTML += `
+            <div class="preview-card">
+                <div class="preview-question">
+                    ${index + 1}. ${card.left}
+                </div>
+
+                <div class="preview-answer">
+                    ${card.right}
+                </div>
+            </div>
+        `;
+    });
+}
+
+document
+    .getElementById("sourceText")
+    .addEventListener("input", showPreview);
+
+document
+    .getElementById("previewBtn")
+    .addEventListener("click", showPreview);
