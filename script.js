@@ -1,3 +1,31 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+/* --------------------
+   FIREBASE CONFIG
+-------------------- */
+
+const firebaseConfig = {
+    apiKey: "DIN_API_KEY",
+    authDomain: "DITT_PROSJEKT.firebaseapp.com",
+    projectId: "DITT_PROSJEKT",
+    storageBucket: "DITT_PROSJEKT.firebasestorage.app",
+    messagingSenderId: "123456789",
+    appId: "DIN_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* --------------------
+   GAME VARIABLES
+-------------------- */
+
 let cardsData = [];
 
 let selectedLeft = null;
@@ -8,15 +36,24 @@ let matches = 0;
 let seconds = 0;
 let timer = null;
 
+let currentGameId = null;
+
 const leftColumn = document.getElementById("leftColumn");
 const rightColumn = document.getElementById("rightColumn");
 const winner = document.getElementById("winner");
 
+/* --------------------
+   HELPERS
+-------------------- */
+
 function shuffle(array) {
+
     const arr = [...array];
 
     for (let i = arr.length - 1; i > 0; i--) {
+
         const j = Math.floor(Math.random() * (i + 1));
+
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
 
@@ -24,6 +61,7 @@ function shuffle(array) {
 }
 
 function startTimer() {
+
     clearInterval(timer);
 
     seconds = 0;
@@ -32,24 +70,64 @@ function startTimer() {
         "Tid: 0 s";
 
     timer = setInterval(() => {
+
         seconds++;
 
         document.getElementById("timer").textContent =
             `Tid: ${seconds} s`;
+
     }, 1000);
 }
 
-async function loadGame() {
+/* --------------------
+   LOAD GAME FROM FIREBASE
+-------------------- */
 
-    matches = 0;
+async function loadGame(gameId) {
 
-    selectedLeft = null;
-    selectedRight = null;
+    try {
 
-    winner.textContent = "";
+        currentGameId = gameId;
 
-    const response = await fetch("cards.json");
-    cardsData = await response.json();
+        matches = 0;
+
+        selectedLeft = null;
+        selectedRight = null;
+
+        winner.textContent = "";
+
+        const docRef = doc(db, "cardsets", gameId);
+
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+
+            alert("Fant ikke spill-ID");
+
+            return;
+        }
+
+        const gameData = docSnap.data();
+
+        cardsData = gameData.cards;
+
+        buildBoard();
+
+        startTimer();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Kunne ikke laste spillet.");
+    }
+}
+
+/* --------------------
+   BUILD BOARD
+-------------------- */
+
+function buildBoard() {
 
     leftColumn.innerHTML = "";
     rightColumn.innerHTML = "";
@@ -84,14 +162,19 @@ async function loadGame() {
 
         rightColumn.appendChild(card);
     });
-
-    startTimer();
 }
+
+/* --------------------
+   SELECTION
+-------------------- */
 
 function clearSelections() {
 
-    document.querySelectorAll(".selected")
-        .forEach(card => card.classList.remove("selected"));
+    document
+        .querySelectorAll(".selected")
+        .forEach(card =>
+            card.classList.remove("selected")
+        );
 
     selectedLeft = null;
     selectedRight = null;
@@ -101,7 +184,9 @@ function selectLeft(card, item) {
 
     document
         .querySelectorAll("#leftColumn .selected")
-        .forEach(c => c.classList.remove("selected"));
+        .forEach(c =>
+            c.classList.remove("selected")
+        );
 
     card.classList.add("selected");
 
@@ -117,7 +202,9 @@ function selectRight(card, item) {
 
     document
         .querySelectorAll("#rightColumn .selected")
-        .forEach(c => c.classList.remove("selected"));
+        .forEach(c =>
+            c.classList.remove("selected")
+        );
 
     card.classList.add("selected");
 
@@ -129,6 +216,10 @@ function selectRight(card, item) {
     checkMatch();
 }
 
+/* --------------------
+   MATCH CHECK
+-------------------- */
+
 function checkMatch() {
 
     if (!selectedLeft || !selectedRight) {
@@ -136,7 +227,8 @@ function checkMatch() {
     }
 
     const correct =
-        selectedLeft.item.left === selectedRight.item.left;
+        selectedLeft.item.left ===
+        selectedRight.item.left;
 
     if (correct) {
 
@@ -170,8 +262,34 @@ function checkMatch() {
     }
 }
 
+/* --------------------
+   BUTTONS
+-------------------- */
+
+document
+    .getElementById("startBtn")
+    .addEventListener("click", () => {
+
+        const gameId =
+            document.getElementById("gameId")
+                .value
+                .trim();
+
+        if (!gameId) {
+
+            alert("Skriv inn spill-ID");
+
+            return;
+        }
+
+        loadGame(gameId);
+    });
+
 document
     .getElementById("restartBtn")
-    .addEventListener("click", loadGame);
+    .addEventListener("click", () => {
 
-loadGame();
+        if (currentGameId) {
+            loadGame(currentGameId);
+        }
+    });
