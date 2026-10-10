@@ -101,3 +101,8 @@ h1 {
 #restartBtn:hover {
     background: #1d4ed8;
 }
+
+#restartBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
