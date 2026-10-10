@@ -16,30 +16,50 @@
 
     <h1>📚 Opprett nytt spill</h1>
 
-    <label>Spill-ID</label>
-    <input id="gameId"
-           placeholder="f.eks. prosent-vg1">
+    <div class="editor-layout">
 
-    <label>Tittel</label>
-    <input id="title"
-           placeholder="f.eks. Prosentregning">
+        <div class="editor-panel">
 
-    <label>Lim inn KI-data</label> <span> Du kan lime inn spørsmål/svar i nesten hvilket som helst format. Systemet prøver automatisk å tolke innholdet.</span>
+            <label>Spill-ID</label>
+            <input id="gameId"
+                   placeholder="f.eks. prosent-vg1">
 
-    <textarea
-        id="sourceText"
-        rows="20"
-        placeholder="Spørsmål|Svar"></textarea>
+            <label>Tittel</label>
+            <input id="title"
+                   placeholder="f.eks. Prosentregning">
 
-<div id="preview"></div>
+            <label>Lim inn KI-data</label>
+            <span>
+                Du kan lime inn spørsmål/svar i nesten hvilket som helst format.
+                Systemet prøver automatisk å tolke innholdet.
+            </span>
 
-<button id="saveBtn">
-    Lagre spill
-</button>
+            <textarea
+                id="sourceText"
+                rows="20"
+                placeholder="Spørsmål|Svar">
+            </textarea>
 
-    <div id="status"></div>
+            <button id="saveBtn">
+                Lagre spill
+            </button>
+
+            <div id="status"></div>
+
+        </div>
+
+        <div class="preview-panel">
+
+            <h2>Forhåndsvisning</h2>
+
+            <div id="preview"></div>
+
+        </div>
+
+    </div>
 
 </div>
+`
 
 <script type="module" src="admin.js"></script>
 
