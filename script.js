@@ -303,7 +303,8 @@ document
             document
                 .getElementById("gameId")
                 .value
-                .trim();
+                .trim()
+                .toLowerCase();
 
         if (!gameId) {
 
