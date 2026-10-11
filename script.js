@@ -117,6 +117,9 @@ async function loadGame(gameId) {
             return;
         }
 
+        const gameData = gameDoc.data();        
+        document.getElementById("gameTitle").textContent = gameData.title;
+        
         cardsData = [];
 
         const cardsRef = collection(
