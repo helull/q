@@ -1,0 +1,133 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+}
+
+.topbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+input{
+    flex:1;
+    padding:12px;
+    font-size:1rem;
+}
+
+button{
+    padding:12px 24px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+h1{
+    text-align:center;
+    margin:10px 0;
+}
+
+#winner{
+    text-align:center;
+    font-size:1.4rem;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+#gameBoard{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    grid-template-rows:
+        repeat(3,1fr);
+
+    gap:15px;
+
+    height:75vh;
+}
+
+.memory-card{
+    perspective:1000px;
+    cursor:pointer;
+}
+
+.card-inner{
+
+    width:100%;
+    height:100%;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+
+    transition:transform .3s;
+}
+
+.memory-card.flipped .card-inner{
+    transform:rotateY(180deg);
+}
+
+.card-front,
+.card-back{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    border-radius:15px;
+
+    backface-visibility:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:15px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.15);
+}
+
+.card-front{
+
+    background:#2563eb;
+    color:white;
+
+    font-size:3rem;
+}
+
+.card-back{
+
+    background:white;
+
+    transform:rotateY(180deg);
+
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.question .card-back{
+    background:#dbeafe;
+}
+
+.answer .card-back{
+    background:#fef3c7;
+}
+
+.matched .card-back{
+    background:#bbf7d0 !important;
+}
