@@ -260,7 +260,7 @@ function checkMatch(){
 
             resetSelection();
 
-        },1000);
+        },3000);
     }
 }
 
