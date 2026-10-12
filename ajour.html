@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ajourfør spill</title>
+
+ajour.css
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2..min.jsscript>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="toolbar">
+
+        <h1>🛠 Ajourfør spill</h1>
+
+        <button class="back-btn"
+                onclick="location.href='admin.html'">
+            ← Tilbake til admin
+        </button>
+
+    </div>
+
+    <div class="editor-layout">
+
+        <div class="collections-panel">
+
+            <h2>Kortsett</h2>
+
+            <input
+                id="searchBox"
+                type="text"
+                placeholder="Søk..."
+            >
+
+            <div id="collectionsList"></div>
+
+        </div>
+
+        <div class="cards-panel">
+
+            <div id="datasetHeader"></div>
+
+            <div id="cardContainer"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="ajour.js"></script>
+</html>
