@@ -485,11 +485,11 @@ function drawCard(
 
     pdf.setFontSize(10);
 
-    pdf.text(
+/*    pdf.text(
         "#" + number,
         x + 4,
         y + 5.5
-    );
+    );*/
 
     // Vannmerke
 
