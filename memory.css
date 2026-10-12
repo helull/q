@@ -131,3 +131,20 @@ h1{
 .matched .card-back{
     background:#bbf7d0 !important;
 }
+
+.controls-row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.delay-control{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+#delaySlider{
+    width:150px;
+}
