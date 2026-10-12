@@ -523,21 +523,31 @@ function drawCard(
         "bold"
     );
 
-    pdf.setFontSize(
-        16
-    );
+let fontSize = 24;
+
+if(text.length < 40){
+    fontSize = 30;
+}
+
+if(text.length < 20){
+    fontSize = 36;
+}
+
+pdf.setFontSize(fontSize);
 
     const lines =
         pdf.splitTextToSize(
             text,
-            76
+            85
         );
-
-    pdf.text(
-        lines,
-        x + 8,
-        y + 28
-    );
+pdf.text(
+    lines,
+    x + (w / 2),
+    y + (h / 2),
+    {
+        align: "center"
+    }
+);
 }
 
 
