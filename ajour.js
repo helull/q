@@ -171,7 +171,7 @@ async function loadCards(gameId){
                 id="pdfBtn"
             >
 
-                Last ned PDF
+                Last ned PDF av kortstokk
 
             </button>
 
@@ -180,7 +180,7 @@ async function loadCards(gameId){
                 id="deleteSetBtn"
             >
 
-                Slett denne kortstokk
+                Slett  kortstokk
 
             </button>
 
