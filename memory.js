@@ -100,27 +100,37 @@ async function loadGame(gameId){
     const snapshot =
         await getDocs(cardsRef);
 
-    let pairId = 1;
+   // Hent alle kortene fra databasen
+const cardData = [];
 
-    snapshot.forEach(doc => {
+snapshot.forEach(doc => {
+    cardData.push(doc.data());
+});
 
-        const data =
-            doc.data();
+// Bland parene tilfeldig
+shuffle(cardData);
 
-        cards.push({
-            pairId,
-            type:"question",
-            text:data.left
-        });
+// Velg maks 6 par = 12 kort
+const selectedCards = cardData.slice(0, 6);
 
-        cards.push({
-            pairId,
-            type:"answer",
-            text:data.right
-        });
+let pairId = 1;
 
-        pairId++;
+selectedCards.forEach(data => {
+
+    cards.push({
+        pairId,
+        type: "question",
+        text: data.left
     });
+
+    cards.push({
+        pairId,
+        type: "answer",
+        text: data.right
+    });
+
+    pairId++;
+});
 
     cards = shuffle(cards);
 
