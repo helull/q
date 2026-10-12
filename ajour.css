@@ -1,0 +1,141 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:15px 20px;
+}
+
+.toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+h1{
+    margin:0;
+}
+
+.editor-layout{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    gap:25px;
+}
+
+.collections-panel{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+.cards-panel{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+#searchBox{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    margin-bottom:15px;
+}
+
+.collection-item{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    margin-bottom:8px;
+    cursor:pointer;
+    background:white;
+}
+
+.collection-item:hover{
+    background:#eff6ff;
+}
+
+.card{
+    border:1px solid #ddd;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:12px;
+    background:#fff;
+}
+
+.card textarea{
+    width:100%;
+    min-height:70px;
+    margin-bottom:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    padding:10px;
+}
+
+.card-buttons{
+    display:flex;
+    gap:10px;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    color:white;
+}
+
+.save-btn{
+    background:#22c55e;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+.pdf-btn{
+    background:#2563eb;
+}
+
+.remove-set-btn{
+    background:#dc2626;
+}
+
+.back-btn{
+    background:#2563eb;
+}
+
+.header-buttons{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+#datasetHeader{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+@media(max-width:900px){
+
+    .editor-layout{
+        grid-template-columns:1fr;
+    }
+
+}
