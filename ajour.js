@@ -523,14 +523,14 @@ function drawCard(
         "bold"
     );
 
-let fontSize = 24;
+let fontSize = 18;
 
 if(text.length < 40){
-    fontSize = 30;
+    fontSize = 24;
 }
 
 if(text.length < 20){
-    fontSize = 36;
+    fontSize = 28;
 }
 
 pdf.setFontSize(fontSize);
@@ -603,18 +603,22 @@ async function generatePdf(){
         });
 
     const cardW = 95;
-    const cardH = 90;
+    const cardH = 58;
 
-    const positions = [
+const positions = [
 
-        [5,10],
-        [101,10],
-        [197,10],
+    [5,8],
+    [101,8],
+    [197,8],
 
-        [5,105],
-        [101,105],
-        [197,105]
-    ];
+    [5,72],
+    [101,72],
+    [197,72],
+
+    [5,136],
+    [101,136],
+    [197,136]
+];
 
     let index = 0;
 
@@ -625,7 +629,7 @@ async function generatePdf(){
         const pageCards =
             cards.slice(
                 index,
-                index + 6
+                index + 9
             );
 
         if(index > 0){
@@ -654,7 +658,7 @@ async function generatePdf(){
         pdf.addPage();
 
         const order =
-            [2,1,0,5,4,3];
+            [2,1,0,5,4,3,8,7,6];
 
         order.forEach(
             (originalIndex,newIndex) => {
@@ -691,7 +695,7 @@ async function generatePdf(){
 
         });
 
-        index += 6;
+        index += 9;
     }
 
     pdf.save(
