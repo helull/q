@@ -513,15 +513,15 @@ function drawCard(
     // Hovedtekst
 
     pdf.setTextColor(
-        30,
-        30,
-        30
-    );
+    30,
+    30,
+    30
+);
 
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
+pdf.setFont(
+    "helvetica",
+    "bold"
+);
 
 let fontSize = 18;
 
@@ -530,22 +530,41 @@ if(text.length < 40){
 }
 
 if(text.length < 20){
-    fontSize = 28;
+    fontSize = 30;
+}
+
+if(text.length > 80){
+    fontSize = 14;
 }
 
 pdf.setFontSize(fontSize);
 
-    const lines =
-        pdf.splitTextToSize(
-            text,
-            85
-        );
+const cleanedText =
+    text
+        .replaceAll("−", "-")
+        .replaceAll("=", "  =  ");
+
+const lines =
+    pdf.splitTextToSize(
+        cleanedText,
+        82
+    );
+
+const totalHeight =
+    lines.length *
+    (fontSize * 0.45);
+
+const startY =
+    y +
+    (h / 2) -
+    (totalHeight / 2);
+
 pdf.text(
     lines,
     x + (w / 2),
-    y + (h / 2),
+    startY,
     {
-        align: "center"
+        align:"center"
     }
 );
 }
