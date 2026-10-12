@@ -126,3 +126,21 @@ button:hover{
     gap:15px;
     margin-bottom:10px;
 }
+
+.button-row{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.button-row button{
+    margin-top:0;
+}
+
+#editBtn{
+    background:#16a34a;
+}
+
+#editBtn:hover{
+    background:#15803d;
+}
