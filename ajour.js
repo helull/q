@@ -469,7 +469,7 @@ function drawCard(
         x,
         y,
         w,
-        14,
+        8,
         4,
         4,
         "F"
@@ -488,7 +488,7 @@ function drawCard(
     pdf.text(
         "#" + number,
         x + 4,
-        y + 9
+        y + 5.5
     );
 
     // Vannmerke
