@@ -180,7 +180,7 @@ async function loadCards(gameId){
                 id="deleteSetBtn"
             >
 
-                Slett kortsett
+                Slett denne kortstokk
 
             </button>
 
