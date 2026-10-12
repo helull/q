@@ -401,6 +401,146 @@ async function deleteCollection(){
     loadCollections();
 }
 
+function drawCard(
+    pdf,
+    x,
+    y,
+    w,
+    h,
+    text,
+    number,
+    bannerColor,
+    watermark
+){
+
+    // Skygge
+
+    pdf.setFillColor(
+        220,
+        225,
+        235
+    );
+
+    pdf.roundedRect(
+        x + 1,
+        y + 1,
+        w,
+        h,
+        4,
+        4,
+        "F"
+    );
+
+    // Kort
+
+    pdf.setFillColor(
+        248,
+        250,
+        252
+    );
+
+    pdf.setDrawColor(
+        37,
+        99,
+        235
+    );
+
+    pdf.setLineWidth(
+        0.8
+    );
+
+    pdf.roundedRect(
+        x,
+        y,
+        w,
+        h,
+        4,
+        4,
+        "FD"
+    );
+
+    // Banner
+
+    pdf.setFillColor(
+        ...bannerColor
+    );
+
+    pdf.roundedRect(
+        x,
+        y,
+        w,
+        14,
+        4,
+        4,
+        "F"
+    );
+
+    // Nummer
+
+    pdf.setTextColor(
+        255,
+        255,
+        255
+    );
+
+    pdf.setFontSize(10);
+
+    pdf.text(
+        "#" + number,
+        x + 4,
+        y + 9
+    );
+
+    // Vannmerke
+
+    pdf.setTextColor(
+        235,
+        235,
+        235
+    );
+
+    pdf.setFontSize(24);
+
+    pdf.text(
+        watermark,
+        x + 15,
+        y + 50,
+        {
+            angle:45
+        }
+    );
+
+    // Hovedtekst
+
+    pdf.setTextColor(
+        30,
+        30,
+        30
+    );
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.setFontSize(
+        16
+    );
+
+    const lines =
+        pdf.splitTextToSize(
+            text,
+            76
+        );
+
+    pdf.text(
+        lines,
+        x + 8,
+        y + 28
+    );
+}
+
+
 async function generatePdf(){
 
     if(!currentGameId){
@@ -488,25 +628,17 @@ async function generatePdf(){
             const pos =
                 positions[i];
 
-            pdf.rect(
-                pos[0],
-                pos[1],
-                cardW,
-                cardH
-            );
-
-            pdf.setFontSize(16);
-
-            pdf.text(
-
-                pdf.splitTextToSize(
-                    card.left,
-                    80
-                ),
-
-                pos[0] + 8,
-                pos[1] + 20
-            );
+            drawCard(
+    pdf,
+    pos[0],
+    pos[1],
+    cardW,
+    cardH,
+    card.left,
+    index + i + 1,
+    [37,99,235],       // blå
+    "SPØRSMÅL"
+);
         });
 
         pdf.addPage();
@@ -535,25 +667,18 @@ async function generatePdf(){
                     newIndex
                 ];
 
-            pdf.rect(
-                pos[0],
-                pos[1],
-                cardW,
-                cardH
-            );
+  drawCard(
+    pdf,
+    pos[0],
+    pos[1],
+    cardW,
+    cardH,
+    card.right,
+    index + originalIndex + 1,
+    [34,197,94],       // grønn
+    "SVAR"
+);
 
-            pdf.setFontSize(16);
-
-            pdf.text(
-
-                pdf.splitTextToSize(
-                    card.right,
-                    80
-                ),
-
-                pos[0] + 8,
-                pos[1] + 20
-            );
         });
 
         index += 6;
