@@ -14,13 +14,35 @@
 
 <div class="topbar">
 
+    <div class="controls-row">
+
     <input
         id="gameId"
-        placeholder="Spill-ID">
+        placeholder="Spill-ID"
+    >
 
     <button id="startBtn">
-        Start spill
+        Start
     </button>
+
+    <div class="delay-control">
+
+        <span>
+            Ventetid:
+            <span id="delayValue">3</span>s
+        </span>
+
+        <input
+            type="range"
+            id="delaySlider"
+            min="1"
+            max="10"
+            value="3"
+        >
+
+    </div>
+
+</div>
 
 </div>
 
