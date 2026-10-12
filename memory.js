@@ -39,6 +39,8 @@ let lockBoard = false;
 
 let matches = 0;
 
+let flipDelay = 3000;
+
 function shuffle(arr){
 
     for(
@@ -260,7 +262,7 @@ function checkMatch(){
 
             resetSelection();
 
-        },3000);
+        },flipDelay);
     }
 }
 
@@ -294,3 +296,30 @@ document
             }
         }
     );
+
+const delaySlider =
+    document.getElementById(
+        "delaySlider"
+    );
+
+const delayValue =
+    document.getElementById(
+        "delayValue"
+    );
+
+delaySlider.addEventListener(
+    "input",
+    () => {
+
+        const seconds =
+            parseInt(
+                delaySlider.value
+            );
+
+        delayValue.textContent =
+            seconds;
+
+        flipDelay =
+            seconds * 1000;
+    }
+);
