@@ -271,7 +271,7 @@ async function saveGame(){
     document
         .getElementById("status")
         .textContent =
-        `✅ Lagret ${cards.length} kort i '${gameId}'`;
+        `✅ Lagret ${cards.length} kort i '${gameId}' som elevene henter fra helull.github.io/q`;
 }
 
 function showPreview() {
