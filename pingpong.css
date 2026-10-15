@@ -1,0 +1,79 @@
+body{
+    font-family:Arial,sans-serif;
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+}
+
+#loginBox{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+input,
+select,
+button{
+    padding:10px;
+    font-size:16px;
+}
+
+.columns{
+    display:flex;
+    gap:40px;
+    justify-content:space-between;
+}
+
+.columns > div{
+    flex:1;
+}
+
+.card{
+    border:1px solid #ccc;
+    border-radius:8px;
+    padding:15px;
+    margin-bottom:10px;
+    cursor:pointer;
+    background:white;
+    transition:.2s;
+}
+
+.card:hover{
+    background:#eef3ff;
+}
+
+.selected{
+    background:#ffe884;
+}
+
+.correct{
+    background:#99ff99;
+}
+
+.wrong{
+    background:#ffb1b1;
+}
+
+#status{
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+#scoreboard{
+    font-size:28px;
+    margin-bottom:20px;
+}
+
+#currentQuestion{
+    min-height:60px;
+    border:2px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:20px;
+    font-size:22px;
+}
