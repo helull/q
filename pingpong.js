@@ -734,36 +734,78 @@ async function sendAnswer(card){
 
 function updateScoreboard(){
 
-    const myScoreEl =
+    const myName =
+    document.getElementById(
+        "myName"
+    );
+
+    const opponentName =
+    document.getElementById(
+        "opponentName"
+    );
+
+    const myScore =
     document.getElementById(
         "myScore"
     );
 
-    const oppScoreEl =
+    const opponentScore =
     document.getElementById(
         "opponentScore"
     );
 
     if(
-        currentMatch.player1
-        ===
-        userId
+        currentMatch.player1 === userId
     ){
 
-        myScoreEl.textContent =
+        myName.textContent =
+        currentMatch.player1;
+
+        opponentName.textContent =
+        currentMatch.player2;
+
+        myScore.textContent =
         currentMatch.score1;
 
-        oppScoreEl.textContent =
+        opponentScore.textContent =
         currentMatch.score2;
+
     }
     else{
 
-        myScoreEl.textContent =
+        myName.textContent =
+        currentMatch.player2;
+
+        opponentName.textContent =
+        currentMatch.player1;
+
+        myScore.textContent =
         currentMatch.score2;
 
-        oppScoreEl.textContent =
+        opponentScore.textContent =
         currentMatch.score1;
+
     }
+    const turnInfo =
+document.getElementById(
+    "turnInfo"
+);
+
+if(
+    currentMatch.questionOwner
+    === userId
+){
+
+    turnInfo.textContent =
+    "🎯 Det er din tur";
+
+}
+else{
+
+    turnInfo.textContent =
+    "⏳ Venter på motspiller";
+
+}
 }
 
 //////////////////////////////////////////////////
