@@ -186,7 +186,7 @@ async function tryCreateMatch(){
     await addDoc(
         collection(
             db,
-            "activeMatches"
+            "matches"
         ),
         match
     );
@@ -276,7 +276,7 @@ function searchForMatch(){
     onSnapshot(
         collection(
             db,
-            "activeMatches"
+            "matches"
         ),
         snapshot=>{
 
@@ -318,7 +318,7 @@ function startRealtimeMatch(){
 
         doc(
             db,
-            "activeMatches",
+            "matches",
             myMatchId
         ),
 
@@ -491,7 +491,7 @@ async function sendQuestion(card){
 
         doc(
             db,
-            "activeMatches",
+            "matches",
             myMatchId
         ),
 
@@ -584,7 +584,7 @@ async function sendAnswer(card){
         await updateDoc(
             doc(
                 db,
-                "activeMatches",
+                "matches",
                 myMatchId
             ),
             {
@@ -616,7 +616,7 @@ async function sendAnswer(card){
 
         doc(
             db,
-            "activeMatches",
+            "matches",
             myMatchId
         ),
 
