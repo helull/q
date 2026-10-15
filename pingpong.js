@@ -352,6 +352,21 @@ function setStatus(text){
 
 function renderGame(){
 
+    console.log(
+    "Phase:",
+    currentMatch.phase
+);
+
+console.log(
+    "QuestionOwner:",
+    currentMatch.questionOwner
+);
+
+console.log(
+    "User:",
+    userId
+);
+    
     updateScoreboard();
 
     const questions =
@@ -364,11 +379,21 @@ function renderGame(){
         "answers"
     );
 
-    questions.innerHTML="";
-    answers.innerHTML="";
+    const selectedQuestion =
+    document.getElementById(
+        "selectedQuestion"
+    );
+
+    questions.innerHTML = "";
+    answers.innerHTML = "";
+
+    //////////////////////////////////////////////////
+    // SPILL FERDIG
+    //////////////////////////////////////////////////
 
     if(
-      currentMatch.phase==="game-over"
+        currentMatch.phase ===
+        "game-over"
     ){
 
         showWinner();
@@ -376,74 +401,137 @@ function renderGame(){
         return;
     }
 
-    const iOwnQuestions =
+    //////////////////////////////////////////////////
+    // ER DET MIN TUR TIL Å STILLE SPØRSMÅL?
+    //////////////////////////////////////////////////
+
+    const amQuestionOwner =
 
         currentMatch.questionOwner
         ===
         userId;
 
     //////////////////////////////////////////////////
-    // SPØRSMÅLSEIER
+    // VISE VALGT SPØRSMÅL
     //////////////////////////////////////////////////
 
-    if(iOwnQuestions){
+    if(
+        currentMatch.currentQuestion
+    ){
 
-        setStatus(
-            "Velg et spørsmål"
-        );
+        selectedQuestion.textContent =
 
-        currentMatch.cards
-        .forEach(card=>{
+            currentMatch.currentQuestion.left;
 
-            const div =
-            createCard(
-                card.left,
-                ()=>sendQuestion(card)
-            );
+    }else{
 
-            questions.appendChild(
-                div
-            );
-        });
+        selectedQuestion.textContent = "";
 
     }
 
     //////////////////////////////////////////////////
-    // SVARSPILLER
+    // FASE 1:
+    // SPØRSMÅLSEIER SKAL VELGE SPØRSMÅL
     //////////////////////////////////////////////////
 
-    else{
+    if(
+        currentMatch.phase ===
+        "choose-question"
+    ){
 
-        setStatus(
-            "Velg riktig svar"
-        );
+        if(amQuestionOwner){
 
-        currentMatch.cards
-        .forEach(card=>{
-
-            const div =
-            createCard(
-                card.right,
-                ()=>sendAnswer(card)
+            setStatus(
+                "Velg et spørsmål"
             );
 
-            answers.appendChild(
-                div
+            currentMatch.cards.forEach(
+                card=>{
+
+                    const div =
+                    createCard(
+
+                        card.left,
+
+                        ()=>sendQuestion(card)
+
+                    );
+
+                    questions.appendChild(
+                        div
+                    );
+
+                }
             );
-        });
+
+        }
+        else{
+
+            setStatus(
+                "Venter på at motspilleren velger spørsmål..."
+            );
+
+        }
+
+        return;
     }
 
-    document
-    .getElementById(
-        "selectedQuestion"
-    )
-    .textContent =
+    //////////////////////////////////////////////////
+    // FASE 2:
+    // SVARSPILLER SKAL SVARE
+    //////////////////////////////////////////////////
 
-    currentMatch.currentQuestion
-        ?
-        currentMatch.currentQuestion.left
-        :
-        "";
+    if(
+        currentMatch.phase ===
+        "answer-question"
+    ){
+
+        //////////////////////////////////////////////////
+        // SPØRSMÅLSEIER VENTER
+        //////////////////////////////////////////////////
+
+        if(amQuestionOwner){
+
+            setStatus(
+                "Venter på svar..."
+            );
+
+        }
+
+        //////////////////////////////////////////////////
+        // SVARSPILLER SER SVAR
+        //////////////////////////////////////////////////
+
+        else{
+
+            setStatus(
+                "Velg riktig svar"
+            );
+
+            currentMatch.cards.forEach(
+                card=>{
+
+                    const div =
+                    createCard(
+
+                        card.right,
+
+                        ()=>sendAnswer(card)
+
+                    );
+
+                    answers.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+        return;
+    }
+
 }
 
 function createCard(text,action){
