@@ -25,7 +25,7 @@ from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
 
-    apiKey: "DIN_APIKEY",
+    apiKey: "AIzaSyBuBCzDutHiRaueQznBLUZV8gyX_KtPGko",
     authDomain: "quizletformeg.firebaseapp.com",
     projectId: "quizletformeg",
     storageBucket: "quizletformeg.firebasestorage.app",
