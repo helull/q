@@ -33,7 +33,22 @@ body{
     margin:20px 0;
 }
 
+
 #scoreBoard{
-    font-size:32px;
-    margin:20px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px;
+
+    border:2px solid #ddd;
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    font-size:22px;
+}
+
+#scoreBoard strong{
+    color:#005bbb;
 }
