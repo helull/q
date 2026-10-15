@@ -52,3 +52,12 @@ body{
 #scoreBoard strong{
     color:#005bbb;
 }
+
+#opponentSelect{
+    padding:10px;
+    min-width:200px;
+}
+
+#startGameBtn{
+    padding:10px 20px;
+}
