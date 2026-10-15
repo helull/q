@@ -693,6 +693,28 @@ async function sendAnswer(card){
             }
         );
 
+        await updateDoc(
+    doc(
+        db,
+        "players",
+        currentMatch.player1
+    ),
+    {
+        inGame:false
+    }
+);
+
+await updateDoc(
+    doc(
+        db,
+        "players",
+        currentMatch.player2
+    ),
+    {
+        inGame:false
+    }
+);
+        
         return;
     }
 
@@ -924,4 +946,128 @@ document
 .addEventListener(
     "click",
     startMatch
+);
+
+async function startMatch(){
+
+    const opponent =
+
+    document
+    .getElementById(
+        "opponentSelect"
+    )
+    .value;
+
+    if(!opponent){
+
+        alert(
+            "Velg en motspiller"
+        );
+
+        return;
+    }
+
+    const cards =
+    await loadCards();
+
+    const match = {
+
+        gameId,
+
+        player1:userId,
+
+        player2:opponent,
+
+        score1:0,
+
+        score2:0,
+
+        phase:
+        "choose-question",
+
+        questionOwner:
+        userId,
+
+        currentQuestion:null,
+
+        cards,
+
+        winner:null
+
+    };
+
+    const matchRef =
+
+    await addDoc(
+
+        collection(
+            db,
+            "matches"
+        ),
+
+        match
+
+    );
+
+    myMatchId =
+    matchRef.id;
+
+    await updateDoc(
+
+        doc(
+            db,
+            "players",
+            userId
+        ),
+
+        {
+            inGame:true
+        }
+
+    );
+
+    await updateDoc(
+
+        doc(
+            db,
+            "players",
+            opponent
+        ),
+
+        {
+            inGame:true
+        }
+
+    );
+
+}
+
+window.addEventListener(
+    "beforeunload",
+
+    async ()=>{
+
+        if(!userId) return;
+
+        try{
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "players",
+                    userId
+                ),
+
+                {
+                    online:false,
+                    inGame:false
+                }
+
+            );
+
+        }catch(e){}
+
+    }
+
 );
