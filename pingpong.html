@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Spørsmålsspillet</title>
+
+<link rel="stylesheet" href="pingpong.css">
+</head>
+
+<body>
+
+<h1>Spørsmålsspillet</h1>
+
+<div id="loginBox">
+
+    <input
+        type="text"
+        id="gameId"
+        placeholder="Spill-ID">
+
+    <input
+        type="text"
+        id="userId"
+        placeholder="Brukernavn">
+
+    <button id="registerBtn">
+        Registrer
+    </button>
+
+    <select id="opponentList">
+        <option value="">
+            Velg motspiller
+        </option>
+    </select>
+
+    <button id="startBtn">
+        Start kamp
+    </button>
+
+</div>
+
+<div id="gameArea" style="display:none;">
+
+    <div id="status"></div>
+
+    <div id="scoreboard">
+        <span id="score1">0</span>
+        -
+        <span id="score2">0</span>
+    </div>
+
+    <div id="currentQuestion"></div>
+
+    <div class="columns">
+
+        <div>
+
+            <h2>Spørsmål</h2>
+
+            <div id="questions"></div>
+
+        </div>
+
+        <div>
+
+            <h2>Svar</h2>
+
+            <div id="answers"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="pingpong.js"></script>
+
+</body>
+</html>
