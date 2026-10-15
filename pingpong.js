@@ -4,26 +4,34 @@ from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 import {
     getFirestore,
     doc,
-    getDoc,
     setDoc,
-    addDoc,
+    getDoc,
+    deleteDoc,
     updateDoc,
+    addDoc,
     collection,
     getDocs,
-    onSnapshot
+    onSnapshot,
+    query,
+    where
 }
 from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
+//////////////////////////////////////////////////
+//
+// FIREBASE
+//
+//////////////////////////////////////////////////
+
 const firebaseConfig = {
 
-    apiKey: "AIzaSyBuBCzDutHiRaueQznBLUZV8gyX_KtPGko",
+    apiKey: "DIN_APIKEY",
     authDomain: "quizletformeg.firebaseapp.com",
     projectId: "quizletformeg",
-    storageBucket:
-    "quizletformeg.firebasestorage.app",
+    storageBucket: "quizletformeg.firebasestorage.app",
     messagingSenderId: "9975084319",
-    appId:
-    "1:9975084319:web:7c0a0a6802161d1996ac2a"
+    appId: "1:9975084319:web:7c0a0a6802161d1996ac2a"
+
 };
 
 const app =
@@ -32,48 +40,32 @@ initializeApp(firebaseConfig);
 const db =
 getFirestore(app);
 
-let gameId;
-let userId;
-let matchId;
-let currentMatch;
+//////////////////////////////////////////////////
+//
+// STATE
+//
+//////////////////////////////////////////////////
 
-////////////////////////////////////////////////
-// HJELPEFUNKSJONER
-////////////////////////////////////////////////
+let userId = "";
+let gameId = "";
 
-function shuffle(arr){
+let myMatchId = null;
+let currentMatch = null;
 
-    for(
-        let i = arr.length - 1;
-        i > 0;
-        i--
-    ){
-
-        const j =
-        Math.floor(
-            Math.random() * (i + 1)
-        );
-
-        [arr[i],arr[j]]
-        =
-        [arr[j],arr[i]];
-    }
-
-    return arr;
-}
-
-////////////////////////////////////////////////
-// REGISTRERING
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// JOIN
+//
+//////////////////////////////////////////////////
 
 document
-.getElementById("registerBtn")
+.getElementById("joinBtn")
 .addEventListener(
-"click",
-registerPlayer
+    "click",
+    joinGame
 );
 
-async function registerPlayer(){
+async function joinGame(){
 
     gameId =
     document
@@ -96,68 +88,154 @@ async function registerPlayer(){
         return;
     }
 
+    setStatus(
+        "Søker etter medspiller..."
+    );
+
+    await registerWaitingPlayer();
+
+    await tryCreateMatch();
+
+    searchForMatch();
+}
+
+//////////////////////////////////////////////////
+//
+// WAITING PLAYER
+//
+//////////////////////////////////////////////////
+
+async function registerWaitingPlayer(){
+
     await setDoc(
-        doc(db,"players",userId),
+        doc(
+            db,
+            "waitingPlayers",
+            userId
+        ),
         {
             userId,
             gameId,
-            online:true
+            created: Date.now()
         }
     );
-
-    loadPlayers();
 }
 
-////////////////////////////////////////////////
-// LAST SPILLERE
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// MATCH AUTOMATISK
+//
+//////////////////////////////////////////////////
 
-async function loadPlayers(){
+async function tryCreateMatch(){
 
-    const select =
-    document.getElementById(
-    "opponentList"
-    );
-
-    select.innerHTML =
-    "<option value=''>Velg motspiller</option>";
-
-    const snap =
+    const waitingSnap =
     await getDocs(
-        collection(db,"players")
+        collection(
+            db,
+            "waitingPlayers"
+        )
     );
 
-    snap.forEach(player=>{
+    let opponent = null;
 
-        const p = player.data();
+    waitingSnap.forEach(player=>{
+
+        const data =
+        player.data();
 
         if(
-            p.userId !== userId &&
-            p.gameId === gameId
+            data.gameId === gameId &&
+            data.userId !== userId &&
+            !opponent
         ){
-
-            const option =
-            document.createElement(
-            "option"
-            );
-
-            option.value =
-            p.userId;
-
-            option.textContent =
-            p.userId;
-
-            select.appendChild(
-            option
-            );
+            opponent = data;
         }
 
     });
+
+    if(!opponent){
+        return;
+    }
+
+    const cards =
+    await loadCards();
+
+    const match =
+    {
+        gameId,
+
+        player1:userId,
+        player2:opponent.userId,
+
+        score1:0,
+        score2:0,
+
+        phase:"choose-question",
+
+        questionOwner:userId,
+
+        currentQuestion:null,
+
+        cards,
+
+        winner:null
+    };
+
+    const docRef =
+    await addDoc(
+        collection(
+            db,
+            "activeMatches"
+        ),
+        match
+    );
+
+    await deleteDoc(
+        doc(
+            db,
+            "waitingPlayers",
+            userId
+        )
+    );
+
+    await deleteDoc(
+        doc(
+            db,
+            "waitingPlayers",
+            opponent.userId
+        )
+    );
+
+    myMatchId =
+    docRef.id;
 }
 
-////////////////////////////////////////////////
-// LAST KORT
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// LOAD CARDS
+//
+//////////////////////////////////////////////////
+
+function shuffle(arr){
+
+    for(
+        let i=arr.length-1;
+        i>0;
+        i--
+    ){
+
+        const j =
+        Math.floor(
+            Math.random()*(i+1)
+        );
+
+        [arr[i],arr[j]] =
+        [arr[j],arr[i]];
+    }
+
+    return arr;
+}
 
 async function loadCards(){
 
@@ -187,186 +265,188 @@ async function loadCards(){
     return cards.slice(0,6);
 }
 
-////////////////////////////////////////////////
-// START KAMP
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// FINN KAMP
+//
+//////////////////////////////////////////////////
 
-document
-.getElementById("startBtn")
-.addEventListener(
-"click",
-createMatch
-);
-
-async function createMatch(){
-
-    const opponent =
-    document
-    .getElementById(
-    "opponentList"
-    )
-    .value;
-
-    if(!opponent){
-
-        alert("Velg motspiller");
-
-        return;
-    }
-
-    const cards =
-    await loadCards();
-
-    const docRef =
-    await addDoc(
-        collection(
-            db,
-            "matches"
-        ),
-        {
-            player1:userId,
-            player2:opponent,
-
-            gameId,
-
-            turn:userId,
-
-            questionOwner:userId,
-
-            score1:0,
-            score2:0,
-
-            currentQuestion:null,
-
-            cards
-        }
-    );
-
-    matchId =
-    docRef.id;
-
-    document
-    .getElementById(
-    "gameArea"
-    ).style.display="block";
-
-    listenMatch();
-}
-
-////////////////////////////////////////////////
-// LISTEN
-////////////////////////////////////////////////
-
-function listenMatch(){
+function searchForMatch(){
 
     onSnapshot(
+        collection(
+            db,
+            "activeMatches"
+        ),
+        snapshot=>{
+
+            snapshot.forEach(docSnap=>{
+
+                const data =
+                docSnap.data();
+
+                if(
+                    data.player1===userId ||
+                    data.player2===userId
+                ){
+
+                    myMatchId =
+                    docSnap.id;
+
+                    currentMatch =
+                    data;
+
+                    startRealtimeMatch();
+
+                }
+
+            });
+
+        }
+    );
+}
+
+//////////////////////////////////////////////////
+//
+// REALTIME
+//
+//////////////////////////////////////////////////
+
+function startRealtimeMatch(){
+
+    onSnapshot(
+
         doc(
             db,
-            "matches",
-            matchId
+            "activeMatches",
+            myMatchId
         ),
+
         snap=>{
 
-            if(!snap.exists()) return;
+            if(!snap.exists()){
+                return;
+            }
 
             currentMatch =
             snap.data();
 
-            render();
-
+            renderGame();
         }
     );
 }
 
-////////////////////////////////////////////////
-// VISNING
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// UI
+//
+//////////////////////////////////////////////////
 
-function render(){
-
-    document
-    .getElementById("score1")
-    .textContent =
-    currentMatch.score1;
+function setStatus(text){
 
     document
-    .getElementById("score2")
+    .getElementById("status")
     .textContent =
-    currentMatch.score2;
+    text;
+}
 
-    const isQuestionPlayer =
+function renderGame(){
 
-    currentMatch.questionOwner
-    ===
-    userId;
+    updateScoreboard();
 
     const questions =
     document.getElementById(
-    "questions"
+        "questions"
     );
 
     const answers =
     document.getElementById(
-    "answers"
+        "answers"
     );
 
     questions.innerHTML="";
     answers.innerHTML="";
 
-    if(isQuestionPlayer){
+    if(
+      currentMatch.phase==="game-over"
+    ){
 
-        document
-        .getElementById("status")
-        .textContent =
-        "Velg et spørsmål";
+        showWinner();
+
+        return;
+    }
+
+    const iOwnQuestions =
+
+        currentMatch.questionOwner
+        ===
+        userId;
+
+    //////////////////////////////////////////////////
+    // SPØRSMÅLSEIER
+    //////////////////////////////////////////////////
+
+    if(iOwnQuestions){
+
+        setStatus(
+            "Velg et spørsmål"
+        );
 
         currentMatch.cards
         .forEach(card=>{
 
             const div =
-            makeCard(
+            createCard(
                 card.left,
                 ()=>sendQuestion(card)
             );
 
-            questions.appendChild(div);
-
+            questions.appendChild(
+                div
+            );
         });
 
-    }else{
+    }
 
-        document
-        .getElementById("status")
-        .textContent =
-        "Velg riktig svar";
+    //////////////////////////////////////////////////
+    // SVARSPILLER
+    //////////////////////////////////////////////////
+
+    else{
+
+        setStatus(
+            "Velg riktig svar"
+        );
 
         currentMatch.cards
         .forEach(card=>{
 
             const div =
-            makeCard(
+            createCard(
                 card.right,
-                ()=>answer(card)
+                ()=>sendAnswer(card)
             );
 
-            answers.appendChild(div);
-
+            answers.appendChild(
+                div
+            );
         });
-
     }
 
     document
     .getElementById(
-    "currentQuestion"
+        "selectedQuestion"
     )
     .textContent =
 
     currentMatch.currentQuestion
-        ? currentMatch.currentQuestion.left
-        : "";
+        ?
+        currentMatch.currentQuestion.left
+        :
+        "";
 }
 
-function makeCard(text,action){
+function createCard(text,action){
 
     const div =
     document.createElement("div");
@@ -383,36 +463,61 @@ function makeCard(text,action){
     return div;
 }
 
-////////////////////////////////////////////////
-// SEND SPØRSMÅL
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
+// SPØRSMÅL
+//
+//////////////////////////////////////////////////
 
 async function sendQuestion(card){
 
     if(
+        currentMatch.phase
+        !==
+        "choose-question"
+    ){
+        return;
+    }
+
+    if(
         currentMatch.questionOwner
-        !== userId
+        !==
+        userId
     ){
         return;
     }
 
     await updateDoc(
+
         doc(
             db,
-            "matches",
-            matchId
+            "activeMatches",
+            myMatchId
         ),
+
         {
-            currentQuestion:card
+            currentQuestion:card,
+            phase:"answer-question"
         }
+
     );
 }
 
-////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//
 // SVAR
-////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////
 
-async function answer(card){
+async function sendAnswer(card){
+
+    if(
+        currentMatch.phase
+        !==
+        "answer-question"
+    ){
+        return;
+    }
 
     if(
         currentMatch.questionOwner
@@ -421,25 +526,25 @@ async function answer(card){
         return;
     }
 
-    if(
-        !currentMatch.currentQuestion
-    ){
-        return;
-    }
-
     const question =
     currentMatch.currentQuestion;
 
-    let score1 =
-    currentMatch.score1;
+    if(!question){
+        return;
+    }
 
-    let score2 =
-    currentMatch.score2;
+    let {
+        score1,
+        score2
+    } = currentMatch;
 
-    if(
-        card.right ===
-        question.right
-    ){
+    const correct =
+
+        card.right
+        ===
+        question.right;
+
+    if(correct){
 
         if(
             currentMatch.questionOwner
@@ -453,45 +558,161 @@ async function answer(card){
         }
     }
 
-    const remaining =
+    const remainingCards =
 
-    currentMatch.cards.filter(
-        c => c.id !== question.id
-    );
+        currentMatch.cards.filter(
+            c =>
+            c.id !== question.id
+        );
 
     if(
-        remaining.length === 0
+        remainingCards.length===0
     ){
 
-        alert("Spillet er ferdig!");
+        let winner = "Uavgjort";
 
+        if(score1>score2){
+            winner =
+            currentMatch.player1;
+        }
+
+        if(score2>score1){
+            winner =
+            currentMatch.player2;
+        }
+
+        await updateDoc(
+            doc(
+                db,
+                "activeMatches",
+                myMatchId
+            ),
+            {
+                score1,
+                score2,
+                phase:"game-over",
+                winner
+            }
+        );
+
+        return;
     }
 
     const nextOwner =
 
-    currentMatch.questionOwner ===
-    currentMatch.player1
-        ? currentMatch.player2
-        : currentMatch.player1;
+        currentMatch.questionOwner
+        ===
+        currentMatch.player1
+
+        ?
+
+        currentMatch.player2
+
+        :
+
+        currentMatch.player1;
 
     await updateDoc(
+
         doc(
             db,
-            "matches",
-            matchId
+            "activeMatches",
+            myMatchId
         ),
+
         {
             score1,
             score2,
 
+            cards:
+            remainingCards,
+
             currentQuestion:null,
 
-            cards:remaining,
+            phase:"choose-question",
 
             questionOwner:
-            nextOwner,
-
-            turn:nextOwner
+            nextOwner
         }
+
     );
+}
+
+//////////////////////////////////////////////////
+//
+// SCORE
+//
+//////////////////////////////////////////////////
+
+function updateScoreboard(){
+
+    const myScoreEl =
+    document.getElementById(
+        "myScore"
+    );
+
+    const oppScoreEl =
+    document.getElementById(
+        "opponentScore"
+    );
+
+    if(
+        currentMatch.player1
+        ===
+        userId
+    ){
+
+        myScoreEl.textContent =
+        currentMatch.score1;
+
+        oppScoreEl.textContent =
+        currentMatch.score2;
+    }
+    else{
+
+        myScoreEl.textContent =
+        currentMatch.score2;
+
+        oppScoreEl.textContent =
+        currentMatch.score1;
+    }
+}
+
+//////////////////////////////////////////////////
+//
+// WINNER
+//
+//////////////////////////////////////////////////
+
+function showWinner(){
+
+    if(
+        currentMatch.winner
+        ===
+        "Uavgjort"
+    ){
+
+        setStatus(
+            "🤝 Uavgjort"
+        );
+
+        return;
+    }
+
+    if(
+        currentMatch.winner
+        ===
+        userId
+    ){
+
+        setStatus(
+            "🏆 Du vant!"
+        );
+    }
+    else{
+
+        setStatus(
+            "😢 Du tapte"
+        );
+    }
 }
