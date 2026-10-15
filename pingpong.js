@@ -92,11 +92,11 @@ async function joinGame(){
         "Søker etter medspiller..."
     );
 
-    await registerWaitingPlayer();
+    await registerPlayer();
 
-    await tryCreateMatch();
+listenForPlayers();
 
-    searchForMatch();
+searchForMatch();
 }
 
 //////////////////////////////////////////////////
@@ -105,20 +105,30 @@ async function joinGame(){
 //
 //////////////////////////////////////////////////
 
-async function registerWaitingPlayer(){
+async function registerPlayer(){
 
     await setDoc(
+
         doc(
             db,
-            "waitingPlayers",
+            "players",
             userId
         ),
+
         {
             userId,
             gameId,
-            created: Date.now()
+
+            online:true,
+
+            inGame:false,
+
+            created:
+            Date.now()
         }
+
     );
+
 }
 
 //////////////////////////////////////////////////
@@ -846,3 +856,72 @@ function showWinner(){
         );
     }
 }
+function listenForPlayers(){
+
+    onSnapshot(
+
+        collection(
+            db,
+            "players"
+        ),
+
+        snapshot=>{
+
+            const select =
+            document.getElementById(
+                "opponentSelect"
+            );
+
+            select.innerHTML =
+            "<option value=''>Velg motspiller</option>";
+
+            snapshot.forEach(doc=>{
+
+                const player =
+                doc.data();
+
+                if(
+
+                    player.userId !== userId &&
+
+                    player.gameId === gameId &&
+
+                    player.online === true &&
+
+                    player.inGame === false
+
+                ){
+
+                    const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                    option.value =
+                    player.userId;
+
+                    option.textContent =
+                    player.userId;
+
+                    select.appendChild(
+                        option
+                    );
+
+                }
+
+            });
+
+        }
+
+    );
+
+}
+
+document
+.getElementById(
+    "startGameBtn"
+)
+.addEventListener(
+    "click",
+    startMatch
+);
