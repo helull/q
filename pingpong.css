@@ -197,10 +197,11 @@ h2{
 
         opacity:0;
 
-        transform:
-            translateY(300px,-250px)
-            scale(0.6)
-            rotate(-12deg);
+transform:
+    translateX(300px)
+    translateY(-250px)
+    scale(0.6)
+    rotate(-12deg);
 
     }
 
