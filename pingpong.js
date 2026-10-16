@@ -468,7 +468,8 @@ console.log(
 
                         card.left,
 
-                        ()=>sendQuestion(card)
+                        ()=>sendQuestion(card),
+                        "questionCard"
 
                     );
 
@@ -531,7 +532,8 @@ console.log(
 
                         card.right,
 
-                        ()=>sendAnswer(card)
+                        ()=>sendAnswer(card),
+                        "answerCard"
 
                     );
 
@@ -549,13 +551,13 @@ console.log(
 
 }
 
-function createCard(text,action){
+function createCard(text,action,type){
 
     const div =
     document.createElement("div");
 
     div.className =
-    "card";
+    "card " + type;
 
     div.textContent =
     text;
