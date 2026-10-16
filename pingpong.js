@@ -92,7 +92,9 @@ async function joinGame(){
         "Søker etter medspiller..."
     );
 
-    await registerPlayer();
+await cleanupOldMatches();
+
+await registerPlayer();
 
 listenForPlayers();
 
@@ -123,8 +125,8 @@ async function registerPlayer(){
 
             inGame:false,
 
-            created:
-            Date.now()
+            created:Date.now()
+
         }
 
     );
@@ -1105,6 +1107,45 @@ async function loadGameIds(){
 
     });
 
+}
+
+async function cleanupOldMatches(){
+
+    const snapshot =
+    await getDocs(
+        collection(
+            db,
+            "matches"
+        )
+    );
+
+    const deletions = [];
+
+    snapshot.forEach(docSnap=>{
+
+        const match =
+        docSnap.data();
+
+        if(
+            match.player1 === userId ||
+            match.player2 === userId
+        ){
+
+            deletions.push(
+                deleteDoc(docSnap.ref)
+            );
+
+        }
+
+    });
+
+    await Promise.all(
+        deletions
+    );
+
+    console.log(
+        "Gamle matcher fjernet"
+    );
 }
 
 loadGameIds();
