@@ -91,14 +91,17 @@ async function joinGame(){
     setStatus(
         "Søker etter medspiller..."
     );
+    
 
-await cleanupOldMatches();
+    await cleanupOldMatches();
 
-await registerPlayer();
+    await registerPlayer();
 
-listenForPlayers();
+    listenForPlayers();
 
-searchForMatch();
+    searchForMatch();
+
+    document.getElementById("currentGameInfo").textContent = " -  " + gameId;
 }
 
 //////////////////////////////////////////////////
@@ -904,17 +907,14 @@ function listenForPlayers(){
                 const player =
                 doc.data();
 
-                if(
-
-                    player.userId !== userId &&
-
-                    player.gameId === gameId &&
-
-                    player.online === true &&
-
-                    player.inGame === false
-
-                ){
+if(
+    player &&
+    player.gameId &&
+    player.gameId.trim().toLowerCase() === gameId.trim().toLowerCase() &&
+    player.userId !== userId &&
+    player.online === true &&
+    player.inGame === false
+){
 
                     const option =
                     document.createElement(
