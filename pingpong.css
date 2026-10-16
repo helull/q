@@ -198,7 +198,7 @@ h2{
         opacity:0;
 
         transform:
-            translateY(-200px)
+            translateY(300px,-250px)
             scale(0.6)
             rotate(-12deg);
 
