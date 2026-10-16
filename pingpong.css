@@ -15,15 +15,34 @@ body{
 }
 
 .card{
-    border:1px solid #ccc;
-    border-radius:10px;
-    padding:15px;
-    margin-bottom:10px;
+
+    background:white;
+
+    border:2px solid #d8d8d8;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin-bottom:12px;
+
+    min-height:90px;
+
     cursor:pointer;
+
+    box-shadow:
+        0 3px 8px rgba(0,0,0,.15);
+
+    transition:.2s;
 }
 
 .card:hover{
-    background:#eef;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,.2);
+
 }
 
 #selectedQuestion{
@@ -117,4 +136,22 @@ body{
 #opponentInfo{
 
     color:#c0392b;
+}
+
+.questionCard{
+
+    border-left:
+        8px solid #2979ff;
+
+    background:
+        #eef5ff;
+}
+
+.answerCard{
+
+    border-left:
+        8px solid #27ae60;
+
+    background:
+        #f1fff4;
 }
