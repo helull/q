@@ -61,3 +61,60 @@ body{
 #startGameBtn{
     padding:10px 20px;
 }
+
+#topBar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:15px;
+
+    border:2px solid #ddd;
+
+    border-radius:12px;
+
+    background:#f8f8f8;
+
+    margin-bottom:15px;
+
+    flex-wrap:wrap;
+}
+
+#login{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+}
+
+#scoreBoard{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+}
+
+#meInfo{
+
+    color:#005bbb;
+}
+
+#opponentInfo{
+
+    color:#c0392b;
+}
