@@ -87,7 +87,23 @@ async function joinGame(){
 
         return;
     }
+const gameDoc =
+await getDoc(
+    doc(
+        db,
+        "cardsets",
+        gameId
+    )
+);
 
+if(!gameDoc.exists()){
+
+    alert(
+        "Spill-ID finnes ikke."
+    );
+
+    return;
+}
     setStatus(
         "Søker etter medspiller..."
     );
