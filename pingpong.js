@@ -1071,3 +1071,40 @@ window.addEventListener(
     }
 
 );
+
+async function loadGameIds(){
+
+    const list =
+    document.getElementById(
+        "gameList"
+    );
+
+    list.innerHTML = "";
+
+    const snapshot =
+    await getDocs(
+        collection(
+            db,
+            "cardsets"
+        )
+    );
+
+    snapshot.forEach(docSnap=>{
+
+        const option =
+        document.createElement(
+            "option"
+        );
+
+        option.value =
+        docSnap.id;
+
+        list.appendChild(
+            option
+        );
+
+    });
+
+}
+
+loadGameIds();
