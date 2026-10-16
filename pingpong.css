@@ -1,0 +1,236 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.columns {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.columns > div {
+    flex: 1 1 400px;
+}
+
+.card {
+    background: white;
+    border: 2px solid #d8d8d8;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+    min-height: 90px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .15);
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .2);
+}
+
+#selectedQuestion {
+    min-height: 60px;
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+#scoreBoard {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 8px 12px;
+    margin: 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background: white;
+}
+
+#scoreBoard strong {
+    color: #005bbb;
+}
+
+#opponentSelect {
+    padding: 10px;
+    min-width: 200px;
+}
+
+#startGameBtn {
+    padding: 10px 20px;
+}
+
+#topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    background: #f8f8f8;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+#login {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+#meInfo {
+    color: #005bbb;
+}
+
+#opponentInfo {
+    color: #c0392b;
+}
+
+.questionCard {
+    border-left: 8px solid #2979ff;
+    background: #eef5ff;
+}
+
+.answerCard {
+    border-left: 8px solid #27ae60;
+    background: #f1fff4;
+}
+
+h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#status {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.card.fly-away {
+    animation: flyAway 0.3s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes flyAway {
+    0% {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateX(300px)
+            translateY(-250px)
+            scale(0.6)
+            rotate(-12deg);
+    }
+}
+
+/* =========================
+   MOBIL OG NETTBRETT
+   ========================= */
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .columns {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .columns > div {
+        flex: 1 1 auto;
+    }
+
+    .card {
+        min-height: 110px;
+        padding: 16px;
+    }
+
+    #topBar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    #login {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    #opponentSelect,
+    #startGameBtn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #scoreBoard {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 18px;
+    }
+
+    #selectedQuestion {
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    #status {
+        font-size: 16px;
+    }
+
+    /* Kortere animasjon på små skjermer */
+    @keyframes flyAway {
+        0% {
+            opacity: 1;
+            transform:
+                translateY(0)
+                scale(1)
+                rotate(0deg);
+        }
+
+        100% {
+            opacity: 0;
+            transform:
+                translateX(120px)
+                translateY(-120px)
+                scale(0.7)
+                rotate(-12deg);
+        }
+    }
+}
