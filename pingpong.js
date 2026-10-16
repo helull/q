@@ -574,46 +574,45 @@ function createCard(text,action,type){
 //
 //////////////////////////////////////////////////
 
-async function sendQuestion(card){
+async function sendQuestion(card, event){
 
-     event.currentTarget.classList.add(
-        "fly-away" );
-
-setTimeout(async ()=>{
-    await updateDoc(
-    
     if(
-        currentMatch.phase
-        !==
+        currentMatch.phase !==
         "choose-question"
     ){
         return;
     }
 
     if(
-        currentMatch.questionOwner
-        !==
+        currentMatch.questionOwner !==
         userId
     ){
         return;
     }
 
-    await updateDoc(
-
-        doc(
-            db,
-            "matches",
-            myMatchId
-        ),
-
-        {
-            currentQuestion:card,
-            phase:"answer-question"
-        }
-
+    event.currentTarget.classList.add(
+        "fly-away"
     );
-    );
- },300);
+
+    setTimeout(async ()=>{
+
+        await updateDoc(
+
+            doc(
+                db,
+                "matches",
+                myMatchId
+            ),
+
+            {
+                currentQuestion: card,
+                phase: "answer-question"
+            }
+
+        );
+
+    },300);
+
 }
 
 //////////////////////////////////////////////////
@@ -624,23 +623,15 @@ setTimeout(async ()=>{
 
 async function sendAnswer(card,event){
 
-    event.currentTarget.classList.add(
-        "fly-away" );
-
-setTimeout(async ()=>{
-    await updateDoc(
-    
     if(
-        currentMatch.phase
-        !==
+        currentMatch.phase !==
         "answer-question"
     ){
         return;
     }
 
     if(
-        currentMatch.questionOwner
-        === userId
+        currentMatch.questionOwner === userId
     ){
         return;
     }
@@ -652,135 +643,146 @@ setTimeout(async ()=>{
         return;
     }
 
-    let {
-        score1,
-        score2
-    } = currentMatch;
+    event.currentTarget.classList.add(
+        "fly-away"
+    );
 
-    const correct =
+    setTimeout(async ()=>{
 
-        card.right
-        ===
-        question.right;
+        let {
+            score1,
+            score2
+        } = currentMatch;
 
-    if(correct){
+        const correct =
+
+            card.right ===
+            question.right;
+
+        if(correct){
+
+            if(
+                currentMatch.questionOwner ===
+                currentMatch.player1
+            ){
+                score1++;
+            }
+            else{
+                score2++;
+            }
+        }
+
+        const remainingCards =
+
+            currentMatch.cards.filter(
+                c => c.id !== question.id
+            );
+
+        //////////////////////////////////////////////////
+        // SPILL FERDIG
+        //////////////////////////////////////////////////
 
         if(
-            currentMatch.questionOwner
-            ===
-            currentMatch.player1
+            remainingCards.length === 0
         ){
-            score1++;
+
+            let winner = "Uavgjort";
+
+            if(score1 > score2){
+                winner =
+                currentMatch.player1;
+            }
+
+            if(score2 > score1){
+                winner =
+                currentMatch.player2;
+            }
+
+            await updateDoc(
+                doc(
+                    db,
+                    "matches",
+                    myMatchId
+                ),
+                {
+                    score1,
+                    score2,
+                    phase:"game-over",
+                    winner
+                }
+            );
+
+            await updateDoc(
+                doc(
+                    db,
+                    "players",
+                    currentMatch.player1
+                ),
+                {
+                    inGame:false
+                }
+            );
+
+            await updateDoc(
+                doc(
+                    db,
+                    "players",
+                    currentMatch.player2
+                ),
+                {
+                    inGame:false
+                }
+            );
+
+            return;
         }
-        else{
-            score2++;
-        }
-    }
 
-    const remainingCards =
+        //////////////////////////////////////////////////
+        // NESTE RUNDE
+        //////////////////////////////////////////////////
 
-        currentMatch.cards.filter(
-            c =>
-            c.id !== question.id
-        );
+        const nextOwner =
 
-    if(
-        remainingCards.length===0
-    ){
+            currentMatch.questionOwner ===
+            currentMatch.player1
 
-        let winner = "Uavgjort";
+            ?
 
-        if(score1>score2){
-            winner =
+            currentMatch.player2
+
+            :
+
             currentMatch.player1;
-        }
-
-        if(score2>score1){
-            winner =
-            currentMatch.player2;
-        }
 
         await updateDoc(
+
             doc(
                 db,
                 "matches",
                 myMatchId
             ),
+
             {
                 score1,
                 score2,
-                phase:"game-over",
-                winner
+
+                cards:
+                remainingCards,
+
+                currentQuestion:null,
+
+                phase:"choose-question",
+
+                questionOwner:
+                nextOwner
             }
+
         );
 
-        await updateDoc(
-    doc(
-        db,
-        "players",
-        currentMatch.player1
-    ),
-    {
-        inGame:false
-    }
-);
- },300);
+    },300);
 
-);
-
-await updateDoc(
-    doc(
-        db,
-        "players",
-        currentMatch.player2
-    ),
-    {
-        inGame:false
-    }
-);
-        
-        return;
-    }
-
-    const nextOwner =
-
-        currentMatch.questionOwner
-        ===
-        currentMatch.player1
-
-        ?
-
-        currentMatch.player2
-
-        :
-
-        currentMatch.player1;
-
-    await updateDoc(
-
-        doc(
-            db,
-            "matches",
-            myMatchId
-        ),
-
-        {
-            score1,
-            score2,
-
-            cards:
-            remainingCards,
-
-            currentQuestion:null,
-
-            phase:"choose-question",
-
-            questionOwner:
-            nextOwner
-        }
-
-    );
 }
+
 
 //////////////////////////////////////////////////
 //
