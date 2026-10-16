@@ -468,7 +468,7 @@ console.log(
 
                         card.left,
 
-                        ()=>sendQuestion(card),
+                        (event)=>sendQuestion(card,event),
                         "questionCard"
 
                     );
@@ -532,7 +532,7 @@ console.log(
 
                         card.right,
 
-                        ()=>sendAnswer(card),
+                        (event)=>sendAnswer(card,event),
                         "answerCard"
 
                     );
@@ -576,6 +576,12 @@ function createCard(text,action,type){
 
 async function sendQuestion(card){
 
+     event.currentTarget.classList.add(
+        "fly-away" );
+
+setTimeout(async ()=>{
+    await updateDoc(
+    
     if(
         currentMatch.phase
         !==
@@ -606,6 +612,8 @@ async function sendQuestion(card){
         }
 
     );
+    );
+ },300);
 }
 
 //////////////////////////////////////////////////
@@ -614,8 +622,14 @@ async function sendQuestion(card){
 //
 //////////////////////////////////////////////////
 
-async function sendAnswer(card){
+async function sendAnswer(card,event){
 
+    event.currentTarget.classList.add(
+        "fly-away" );
+
+setTimeout(async ()=>{
+    await updateDoc(
+    
     if(
         currentMatch.phase
         !==
@@ -709,6 +723,9 @@ async function sendAnswer(card){
     {
         inGame:false
     }
+);
+ },300);
+
 );
 
 await updateDoc(
