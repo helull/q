@@ -627,7 +627,7 @@ async function sendQuestion(card, event){
 
         );
 
-    },300);
+    },500);
 
 }
 
@@ -795,7 +795,7 @@ async function sendAnswer(card,event){
 
         );
 
-    },300);
+    },500);
 
 }
 
