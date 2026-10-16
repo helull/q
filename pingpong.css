@@ -171,3 +171,37 @@ h2{
     font-size:18px;
 
 }
+
+.card.fly-away{
+
+    animation: flyAway 0.3s ease-in forwards;
+
+    pointer-events:none;
+
+}
+
+@keyframes flyAway {
+
+    0%{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translateY(-200px)
+            scale(0.6)
+            rotate(-12deg);
+
+    }
+
+}
