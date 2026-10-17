@@ -37,10 +37,50 @@
 </div>
 
             <label>Lim inn (KI-)data</label>
-            <span>
-                Du kan lime inn spørsmål/svar i nesten hvilket som helst format.
-                Systemet prøver automatisk å tolke innholdet. Bruk gjerne KI!
-            </span>
+            <span> Du kan lime inn spørsmål/svar i nesten hvilket som helst format. Systemet prøver automatisk å tolke innholdet. Bruk gjerne KI!
+
+    <button
+        type="button"
+        id="aiPromptBtn"
+        class="mini-btn">
+        💡 KI-tips
+    </button>
+</span>
+<div id="aiPromptBox" class="ai-prompt-box hidden">
+
+    <h3>Eksempel på prompt til KI</h3>
+
+    <textarea id="aiPromptText" readonly>
+Lag 15 spørsmål og svar om temaet [SETT INN TEMA].
+
+Svarene skal være korte og presise.
+
+Returner resultatet på formatet:
+
+Spørsmål | Svar
+
+Eksempel:
+
+Hva er hovedstaden i Spania? | Madrid
+Hva heter Spanias nasjonalsang? | Marcha Real
+Hva er Spanias største by? | Madrid
+
+Lag nøyaktig 15 spørsmål og svar.
+    </textarea>
+
+    <div class="button-row">
+
+        <button id="copyPromptBtn">
+            📋 Kopier tekst
+        </button>
+
+        <button id="closePromptBtn">
+            Lukk
+        </button>
+
+    </div>
+
+</div>
 
             <textarea id="sourceText" rows="6" placeholder="Spørsmål|Svar"></textarea>
 
