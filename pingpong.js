@@ -197,7 +197,7 @@ async function tryCreateMatch(){
     const match =
     {
         gameId,
-
+        created: Date.now(),
         player1:userId,
         player2:opponent.userId,
 
@@ -1014,7 +1014,7 @@ async function startMatch(){
     const match = {
 
         gameId,
-
+        created: Date.now(),
         player1:userId,
 
         player2:opponent,
@@ -1149,6 +1149,7 @@ async function loadGameIds(){
 }
 
 async function cleanupOldMatches(){
+    const now = Date.now();
 
     const snapshot =
     await getDocs(
@@ -1159,23 +1160,16 @@ async function cleanupOldMatches(){
     );
 
     const deletions = [];
-
     snapshot.forEach(docSnap=>{
 
-        const match =
-        docSnap.data();
+        const match = docSnap.data();
 
-        if(
-            match.player1 === userId ||
-            match.player2 === userId
-        ){
-
-            deletions.push(
-                deleteDoc(docSnap.ref)
-            );
-
+        if(match.player1 === userId || match.player2 === userId || (match.created && now - match.created > 7200000))
+        {
+            deletions.push(deleteDoc(docSnap.ref));
         }
 
+        
     });
 
     await Promise.all(
