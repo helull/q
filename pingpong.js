@@ -589,7 +589,7 @@ async function sendQuestion(card, event){
 
         );
 
-    },2000);
+    },300);
 
 }
 
