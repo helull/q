@@ -833,38 +833,64 @@ function updateScoreboard(){
 //
 //////////////////////////////////////////////////
 
+
+
 function showWinner(){
 
-    if(
-        currentMatch.winner
-        ===
-        "Uavgjort"
-    ){
+    const box =
+        document.getElementById("answerResult");
 
-        setStatus(
-            "🤝 Uavgjort"
-        );
+    const text =
+        document.getElementById("answerResultText");
+
+    box.classList.remove(
+        "hidden",
+        "correct",
+        "wrong"
+    );
+
+    if(currentMatch.winner === "Uavgjort"){
+
+        box.classList.add("correct");
+
+        text.innerHTML =
+            "🤝<br>UAVGJORT" +
+            "<br><br>" +
+            "Trykk REFRESH for å starte på nytt";
 
         return;
     }
 
-    if(
-        currentMatch.winner
-        ===
-        userId
-    ){
+    if(currentMatch.winner === userId){
 
-        setStatus(
-            "🏆 Du vant!"
-        );
+        const opponent =
+            currentMatch.player1 === userId
+            ? currentMatch.player2
+            : currentMatch.player1;
+
+        box.classList.add("correct");
+
+        text.innerHTML =
+            "🏆<br>DU VANT!" +
+            "<br><br>" +
+            "Du vant over " + opponent +
+            "<br><br>" +
+            "Trykk REFRESH for å starte på nytt";
     }
     else{
 
-        setStatus(
-            "😢 Du tapte"
-        );
+        box.classList.add("wrong");
+
+        text.innerHTML =
+            "😢<br>DU TAPTE" +
+            "<br><br>" +
+            currentMatch.winner +
+            " vant over deg!" +
+            "<br><br>" +
+            "Trykk REFRESH for å starte på nytt";
     }
 }
+
 function listenForPlayers(){
 
     onSnapshot(
@@ -1176,9 +1202,9 @@ function showAnswerResult(correct) {
     }
 
     setTimeout(() => {
-
-        box.classList.add("hidden");
-
+        if(currentMatch.phase !== "game-over"){
+            box.classList.add("hidden");
+        }
     }, 1500);
 }
 
