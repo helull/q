@@ -234,3 +234,135 @@ h2 {
         }
     }
 }
+
+/* =========================
+   SPILLMODUS PÅ MOBIL
+   ========================= */
+
+@media (max-width: 768px) {
+
+    /* Skjul ting som ikke trengs under kamp */
+
+    body.game-mode h1,
+    body.game-mode #topBar,
+    body.game-mode #status,
+    body.game-mode h3 {
+        display: none;
+    }
+
+    /* Fast spillheader */
+
+    body.game-mode #gameHeader {
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 1000;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        background: white;
+
+        padding: 8px;
+
+        border-bottom: 2px solid #ddd;
+
+        margin-bottom: 10px;
+    }
+
+    /* Spørsmål får mest plass */
+
+    body.game-mode #selectedQuestion {
+
+        flex: 2;
+
+        min-height: auto;
+
+        margin: 0;
+
+        padding: 8px;
+
+        font-size: 14px;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+    /* TurnInfo */
+
+    body.game-mode #turnInfo {
+
+        flex: 1;
+
+        font-size: 14px;
+
+        font-weight: bold;
+
+        text-align: center;
+
+        white-space: nowrap;
+    }
+
+    /* Kompakt scoreboard */
+
+    body.game-mode #scoreBoard {
+
+        flex: 0;
+
+        display: flex;
+
+        flex-direction: row;
+
+        gap: 8px;
+
+        font-size: 14px;
+
+        padding: 4px 6px;
+
+        border: none;
+
+        background: transparent;
+
+        white-space: nowrap;
+    }
+
+    /* Fjern navnene */
+
+    body.game-mode #scoreBoard strong {
+        display: none;
+    }
+
+    /* Fjern parentesene visuelt */
+
+    body.game-mode #meInfo,
+    body.game-mode #opponentInfo {
+        font-size: 14px;
+    }
+
+    /* Gjør spillfeltet mindre luftfylt */
+
+    body.game-mode .columns {
+        gap: 8px;
+    }
+
+    body.game-mode .card {
+
+        min-height: 70px;
+
+        padding: 12px;
+
+        margin-bottom: 8px;
+
+        font-size: 16px;
+    }
+
+    body.game-mode body {
+        padding: 5px;
+    }
+}
