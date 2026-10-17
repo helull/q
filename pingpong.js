@@ -360,19 +360,36 @@ console.log(
     // VISE VALGT SPØRSMÅL
     //////////////////////////////////////////////////
 
+   if(
+    currentMatch.currentQuestion
+){
+
+    selectedQuestion.textContent =
+        currentMatch.currentQuestion.left;
+
+    selectedQuestion.classList.remove("placeholder");
+
+}
+else{
+
     if(
-        currentMatch.currentQuestion
+        currentMatch.questionOwner === userId
     ){
 
         selectedQuestion.textContent =
-
-            currentMatch.currentQuestion.left;
-
-    }else{
-
-        selectedQuestion.textContent = "";
+        "Velg spørsmål...";
 
     }
+    else{
+
+        selectedQuestion.textContent =
+        "Venter på spørsmål...";
+
+    }
+
+    selectedQuestion.classList.add("placeholder");
+
+}
 
     //////////////////////////////////////////////////
     // FASE 1:
