@@ -388,3 +388,14 @@ body.game-mode .columns {
 
     color: #777;
 }
+
+#selectedQuestion.active-question {
+
+    border-left: 8px solid #2979ff;
+
+    background: #eef5ff;
+
+    font-weight: bold;
+
+    min-height: 60px;
+}
