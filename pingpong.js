@@ -362,6 +362,14 @@ console.log(
 
 if(currentMatch.currentQuestion){
 
+    selectedQuestion.classList.remove(
+        "placeholder"
+    );
+
+    selectedQuestion.classList.add(
+        "active-question"
+    );
+
     const asker = currentMatch.questionOwner;
 
     if(asker === userId){
@@ -372,7 +380,7 @@ if(currentMatch.currentQuestion){
             : currentMatch.player1;
 
         selectedQuestion.textContent =
-            "🎯 Du spør " +
+            "Du spør " +
             opponent +
             ": " +
             currentMatch.currentQuestion.left;
@@ -381,18 +389,17 @@ if(currentMatch.currentQuestion){
     else{
 
         selectedQuestion.textContent =
-            "⚔️ " +
             asker +
             " spør: " +
             currentMatch.currentQuestion.left;
     }
 
-    selectedQuestion.classList.remove(
-        "placeholder"
-    );
-
 }
 else{
+
+    selectedQuestion.classList.remove(
+        "active-question"
+    );
 
     if(
         currentMatch.questionOwner === userId
@@ -409,7 +416,9 @@ else{
 
     }
 
-    selectedQuestion.classList.add("placeholder");
+    selectedQuestion.classList.add(
+        "placeholder"
+    );
 
 }
 
