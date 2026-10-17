@@ -406,7 +406,7 @@ else{
     ){
 
         selectedQuestion.textContent =
-        "🎯 Velg spørsmål...";
+        "🎯 Send et spørsmål...";
 
     }
     else{
