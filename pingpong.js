@@ -67,6 +67,8 @@ document
 
 async function joinGame(){
 
+    await cleanupOldPlayers();
+
     gameId =
     document
     .getElementById("gameId")
@@ -1184,5 +1186,27 @@ async function cleanupOldMatches(){
         "Gamle matcher fjernet"
     );
 }
+
+async function cleanupOldPlayers() {
+
+    const snapshot =
+    await getDocs(collection(db, "players"));
+
+    const now = Date.now();
+
+    snapshot.forEach(async (docSnap) => {
+
+        const player = docSnap.data();
+
+        if (
+            player.created &&
+            now - player.created > 7200000
+        ) {
+            await deleteDoc(docSnap.ref);
+        }
+
+    });
+}
+
 
 loadGameIds();
