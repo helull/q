@@ -377,13 +377,13 @@ else{
     ){
 
         selectedQuestion.textContent =
-        "Velg spørsmål...";
+        "🎯 Velg spørsmål...";
 
     }
     else{
 
         selectedQuestion.textContent =
-        "Venter på spørsmål...";
+        "⏳ Venter på spørsmål...";
 
     }
 
