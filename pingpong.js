@@ -256,7 +256,7 @@ function searchForMatch(){
 //////////////////////////////////////////////////
 
 function startRealtimeMatch(){
-    document.getElementById("gameArea").style.display = "block";
+    document.getElementById("game").style.display = "block";
     document.body.classList.add("game-mode");
     
     onSnapshot(
