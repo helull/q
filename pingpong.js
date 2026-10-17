@@ -900,6 +900,7 @@ document
 );
 
 async function startMatch(){
+    document.body.classList.add("game-mode");
 
     const opponent =
 
