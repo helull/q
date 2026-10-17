@@ -589,7 +589,7 @@ async function sendQuestion(card, event){
 
         );
 
-    },500);
+    },2000);
 
 }
 
@@ -636,7 +636,7 @@ async function sendAnswer(card,event){
 
             card.right ===
             question.right;
-
+showAnswerResult(correct);
         if(correct){
 
             if(
@@ -757,7 +757,7 @@ async function sendAnswer(card,event){
 
         );
 
-    },500);
+    },2000);
 
 }
 
@@ -1144,5 +1144,40 @@ async function cleanupOldPlayers() {
     });
 }
 
+function showAnswerResult(correct) {
+
+    const box =
+        document.getElementById("answerResult");
+
+    const text =
+        document.getElementById("answerResultText");
+
+    box.classList.remove(
+        "hidden",
+        "correct",
+        "wrong"
+    );
+
+    if(correct){
+
+        box.classList.add("correct");
+
+        text.innerHTML =
+            "✅<br>RIKTIG SVAR";
+
+    } else {
+
+        box.classList.add("wrong");
+
+        text.innerHTML =
+            "❌<br>FEIL SVAR";
+    }
+
+    setTimeout(() => {
+
+        box.classList.add("hidden");
+
+    }, 1500);
+}
 
 loadGameIds();
