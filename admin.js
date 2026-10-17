@@ -320,3 +320,38 @@ function showPreview() {
 document
     .getElementById("sourceText")
     .addEventListener("input", showPreview);
+
+document
+.getElementById("aiPromptBtn")
+.addEventListener("click", () => {
+
+    document
+    .getElementById("aiPromptBox")
+    .classList.remove("hidden");
+
+});
+
+document
+.getElementById("closePromptBtn")
+.addEventListener("click", () => {
+
+    document
+    .getElementById("aiPromptBox")
+    .classList.add("hidden");
+
+});
+
+document
+.getElementById("copyPromptBtn")
+.addEventListener("click", async () => {
+
+    const text =
+        document
+        .getElementById("aiPromptText")
+        .value;
+
+    await navigator.clipboard.writeText(text);
+
+    alert("Prompt kopiert til utklippstavlen!");
+
+});
