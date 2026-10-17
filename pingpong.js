@@ -620,7 +620,13 @@ async function sendAnswer(card,event){
     if(!question){
         return;
     }
+    
+        const correct =
 
+            card.right ===
+            question.right;
+            showAnswerResult(correct);
+    
     event.currentTarget.classList.add(
         "fly-away"
     );
@@ -632,11 +638,7 @@ async function sendAnswer(card,event){
             score2
         } = currentMatch;
 
-        const correct =
 
-            card.right ===
-            question.right;
-showAnswerResult(correct);
         if(correct){
 
             if(
@@ -757,7 +759,7 @@ showAnswerResult(correct);
 
         );
 
-    },2000);
+    },1500);
 
 }
 
