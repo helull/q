@@ -360,14 +360,36 @@ console.log(
     // VISE VALGT SPØRSMÅL
     //////////////////////////////////////////////////
 
-   if(
-    currentMatch.currentQuestion
-){
+if(currentMatch.currentQuestion){
 
-    selectedQuestion.textContent =
-        currentMatch.currentQuestion.left;
+    const asker = currentMatch.questionOwner;
 
-    selectedQuestion.classList.remove("placeholder");
+    if(asker === userId){
+
+        const opponent =
+            currentMatch.player1 === userId
+            ? currentMatch.player2
+            : currentMatch.player1;
+
+        selectedQuestion.textContent =
+            "🎯 Du spør " +
+            opponent +
+            ": " +
+            currentMatch.currentQuestion.left;
+
+    }
+    else{
+
+        selectedQuestion.textContent =
+            "⚔️ " +
+            asker +
+            " spør: " +
+            currentMatch.currentQuestion.left;
+    }
+
+    selectedQuestion.classList.remove(
+        "placeholder"
+    );
 
 }
 else{
