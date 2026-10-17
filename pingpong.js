@@ -783,13 +783,13 @@ if(
 ){
 
     turnInfo.textContent =
-    "🎯 Det er din tur";
+    "🎯";
 
 }
 else{
 
     turnInfo.textContent =
-    "⏳ Venter på motspiller";
+    "⏳";
 
 }
 }
