@@ -449,3 +449,7 @@ body.game-mode .columns {
         opacity: 1;
     }
 }
+
+#gameArea {
+    display: none;
+}
