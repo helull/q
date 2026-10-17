@@ -256,7 +256,9 @@ function searchForMatch(){
 //////////////////////////////////////////////////
 
 function startRealtimeMatch(){
-
+    
+    document.body.classList.add("game-mode");
+    
     onSnapshot(
 
         doc(
@@ -294,7 +296,7 @@ function setStatus(text){
 }
 
 function renderGame(){
-
+      
     console.log(
     "Phase:",
     currentMatch.phase
