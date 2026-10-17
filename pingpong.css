@@ -381,3 +381,10 @@ body.game-mode .columns {
         }
     }
 }
+
+#selectedQuestion.placeholder {
+
+    font-style: italic;
+
+    color: #777;
+}
