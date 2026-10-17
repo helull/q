@@ -101,7 +101,7 @@ await getDoc(
 if(!gameDoc.exists()){
 
     alert(
-        "Spill-ID finnes ikke."
+        "Spill-ID finnes ikke, spør lærer om ID"
     );
 
     return;
