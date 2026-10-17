@@ -813,26 +813,7 @@ function updateScoreboard(){
         currentMatch.score1;
 
     }
-    const turnInfo =
-document.getElementById(
-    "turnInfo"
-);
-
-if(
-    currentMatch.questionOwner
-    === userId
-){
-
-    turnInfo.textContent =
-    "🎯";
-
-}
-else{
-
-    turnInfo.textContent =
-    "⏳";
-
-}
+    
 }
 
 //////////////////////////////////////////////////
