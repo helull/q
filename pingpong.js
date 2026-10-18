@@ -755,7 +755,6 @@ async function sendAnswer(card,event){
     }
 
 );
-);
 
 
     },1500);
