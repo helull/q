@@ -8,7 +8,8 @@ import {
     doc,
     getDoc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    setDoc
 }
 from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
@@ -148,45 +149,63 @@ async function loadCards(gameId){
             )
         );
 
-    const title =
+    const gameData =  gameDoc.exists()  ? gameDoc.data()  : {};
 
-        gameDoc.exists()
-            ? gameDoc.data().title
-            : gameId;
+    const title =
+        gameData.title || "";
+
+    const description =
+        gameData.description || "";
 
     const header =
-
         document.getElementById(
             "datasetHeader"
         );
 
     header.innerHTML = `
 
-        <h2>${title}</h2>
+    <div class="dataset-meta">
 
-        <div class="header-buttons">
+        <label>Spill-ID</label>
 
-            <button
-                class="pdf-btn"
-                id="pdfBtn"
-            >
+        <input
+            id="editGameId"
+            value="${gameId}"
+        >
 
-                Last ned PDF av kortstokk
+        <label>Beskrivelse</label>
 
-            </button>
+        <input
+            id="editTitle"
+            value="${title}"
+        >
 
-            <button
-                class="remove-set-btn"
-                id="deleteSetBtn"
-            >
+        <button
+            id="saveMetaBtn"
+        >
+            Lagre informasjon
+        </button>
 
-                Slett  kortstokk
+    </div>
 
-            </button>
+    <div class="header-buttons">
 
-        </div>
-    `;
+        <button
+            class="pdf-btn"
+            id="pdfBtn"
+        >
+            Last ned PDF av kortstokk
+        </button>
 
+        <button
+            class="remove-set-btn"
+            id="deleteSetBtn"
+        >
+            Slett kortstokk
+        </button>
+
+    </div>
+`;
     document
         .getElementById("pdfBtn")
         .onclick =
@@ -197,6 +216,11 @@ async function loadCards(gameId){
         .onclick =
         deleteCollection;
 
+    document
+        .getElementById("saveMetaBtn")
+        .onclick =
+        saveCollectionInfo;
+    
     const container =
         document.getElementById(
             "cardContainer"
@@ -721,4 +745,178 @@ const positions = [
         currentGameId +
         ".pdf"
     );
+}
+
+async function saveCollectionInfo(){
+
+    const newGameId =
+        document
+        .getElementById("editGameId")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const newTitle =
+        document
+        .getElementById("editTitle")
+        .value
+        .trim();
+
+    if(!newGameId){
+
+        alert("Spill-ID mangler");
+
+        return;
+    }
+
+    //
+    // Bare oppdatere beskrivelse
+    //
+
+    if(newGameId === currentGameId){
+
+        await updateDoc(
+
+            doc(
+                db,
+                "cardsets",
+                currentGameId
+            ),
+
+            {
+                title:newTitle
+            }
+
+        );
+
+        alert("Lagret");
+
+        loadCollections();
+
+        return;
+    }
+
+    //
+    // Flytte til ny Spill-ID
+    //
+
+    const oldDoc =
+        await getDoc(
+            doc(
+                db,
+                "cardsets",
+                currentGameId
+            )
+        );
+
+    if(!oldDoc.exists()){
+
+        alert("Kortstokk finnes ikke");
+
+        return;
+    }
+
+    const targetDoc =
+        await getDoc(
+            doc(
+                db,
+                "cardsets",
+                newGameId
+            )
+        );
+
+    if(targetDoc.exists()){
+
+        alert(
+            "Denne Spill-ID-en finnes allerede"
+        );
+
+        return;
+    }
+
+    //
+    // Opprett nytt sett
+    //
+
+    await setDoc(
+
+        doc(
+            db,
+            "cardsets",
+            newGameId
+        ),
+
+        {
+            ...oldDoc.data(),
+            title:newTitle
+        }
+
+    );
+
+    //
+    // Kopier alle kort
+    //
+
+    const cardsSnapshot =
+        await getDocs(
+
+            collection(
+                db,
+                "cardsets",
+                currentGameId,
+                "cards"
+            )
+
+        );
+
+    for(const cardDoc of cardsSnapshot.docs){
+
+        await setDoc(
+
+            doc(
+                db,
+                "cardsets",
+                newGameId,
+                "cards",
+                cardDoc.id
+            ),
+
+            cardDoc.data()
+
+        );
+
+    }
+
+    //
+    // Slett gamle kort
+    //
+
+    for(const cardDoc of cardsSnapshot.docs){
+
+        await deleteDoc(
+            cardDoc.ref
+        );
+
+    }
+
+    await deleteDoc(
+
+        doc(
+            db,
+            "cardsets",
+            currentGameId
+        )
+
+    );
+
+    currentGameId =
+        newGameId;
+
+    alert(
+        "Spill-ID oppdatert"
+    );
+
+    loadCollections();
+
+    loadCards(newGameId);
 }
