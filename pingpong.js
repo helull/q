@@ -402,19 +402,39 @@ else{
     );
 
     if(
-        currentMatch.questionOwner === userId
-    ){
+    currentMatch.questionOwner === userId
+){
 
-        selectedQuestion.textContent =
+    selectedQuestion.textContent =
         "🎯 Send et spørsmål...";
 
-    }
-    else{
+}
+else{
 
-        selectedQuestion.textContent =
+    let message =
         "⏳ Venter på spørsmål...";
 
+    if(
+        currentMatch.lastAnswerPlayer
+    ){
+
+        message += "\n\n";
+
+        message +=
+            currentMatch.lastAnswerPlayer;
+
+        message +=
+            currentMatch.lastAnswerCorrect
+            ? " svarte riktig ✅"
+            : " svarte feil ❌";
     }
+
+    selectedQuestion.textContent =
+        message;
+}
+
+
+    
 
     selectedQuestion.classList.add(
         "placeholder"
@@ -677,18 +697,33 @@ async function sendAnswer(card,event){
             }
 
             await updateDoc(
-                doc(
-                    db,
-                    "matches",
-                    myMatchId
-                ),
-                {
-                    score1,
-                    score2,
-                    phase:"game-over",
-                    winner
-                }
-            );
+
+    doc(
+        db,
+        "matches",
+        myMatchId
+    ),
+
+    {
+        score1,
+        score2,
+
+        cards:
+        remainingCards,
+
+        currentQuestion:null,
+
+        phase:"choose-question",
+
+        questionOwner:
+        nextOwner,
+
+        lastAnswerPlayer:userId,
+
+        lastAnswerCorrect:correct
+    }
+
+);
 
             await updateDoc(
                 doc(
