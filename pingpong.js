@@ -686,22 +686,50 @@ async function sendAnswer(card,event){
         //////////////////////////////////////////////////
 
         if(
-            remainingCards.length === 0
-        ){
+    remainingCards.length === 0
+){
 
-            let winner = "Uavgjort";
+    let winner = "Uavgjort";
 
-            if(score1 > score2){
-                winner =
-                currentMatch.player1;
-            }
+    if(score1 > score2){
+        winner = currentMatch.player1;
+    }
 
-            if(score2 > score1){
-                winner =
-                currentMatch.player2;
-            }
+    if(score2 > score1){
+        winner = currentMatch.player2;
+    }
 
-            await updateDoc(
+    await updateDoc(
+
+        doc(
+            db,
+            "matches",
+            myMatchId
+        ),
+
+        {
+            score1,
+            score2,
+
+            phase:"game-over",
+
+            winner,
+
+            lastAnswerPlayer:userId,
+
+            lastAnswerCorrect:correct
+        }
+
+    );
+
+    return;
+}
+
+        //////////////////////////////////////////////////
+        // NESTE RUNDE
+        //////////////////////////////////////////////////
+
+        await updateDoc(
 
     doc(
         db,
@@ -713,15 +741,13 @@ async function sendAnswer(card,event){
         score1,
         score2,
 
-        cards:
-        remainingCards,
+        cards: remainingCards,
 
         currentQuestion:null,
 
         phase:"choose-question",
 
-        questionOwner:
-        nextOwner,
+        questionOwner:nextOwner,
 
         lastAnswerPlayer:userId,
 
@@ -729,67 +755,6 @@ async function sendAnswer(card,event){
     }
 
 );
-
-            await updateDoc(
-                doc(
-                    db,
-                    "players",
-                    currentMatch.player1
-                ),
-                {
-                    inGame:false
-                }
-            );
-
-            await updateDoc(
-                doc(
-                    db,
-                    "players",
-                    currentMatch.player2
-                ),
-                {
-                    inGame:false
-                }
-            );
-
-            return;
-        }
-
-        //////////////////////////////////////////////////
-        // NESTE RUNDE
-        //////////////////////////////////////////////////
-
-        const nextOwner =
-
-            currentMatch.questionOwner ===
-            currentMatch.player1
-
-            ?
-
-            currentMatch.player2
-
-            :
-
-            currentMatch.player1;
-
-        await updateDoc(
-    doc(
-        db,
-        "matches",
-        myMatchId
-    ),
-    {
-        score1,
-        score2,
-
-        phase:"game-over",
-
-        winner,
-
-        lastAnswerPlayer:userId,
-
-        lastAnswerCorrect:correct
-    }
 );
 
 
