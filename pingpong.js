@@ -522,25 +522,30 @@ else{
                 "Velg riktig svar"
             );
 
-            currentMatch.cards.forEach(
-                card=>{
+            const shuffledAnswers =
+    [...currentMatch.cards];
 
-                    const div =
-                    createCard(
+shuffle(shuffledAnswers);
 
-                        card.right,
+shuffledAnswers.forEach(
+    card=>{
 
-                        (event)=>sendAnswer(card,event),
-                        "answerCard"
+        const div =
+        createCard(
 
-                    );
+            card.right,
 
-                    answers.appendChild(
-                        div
-                    );
+            (event)=>sendAnswer(card,event),
+            "answerCard"
 
-                }
-            );
+        );
+
+        answers.appendChild(
+            div
+        );
+
+    }
+);
 
         }
 
