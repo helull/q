@@ -164,47 +164,46 @@ async function loadCards(gameId){
 
     header.innerHTML = `
 
-    <div class="dataset-meta">
+<div class="dataset-meta">
 
-        <label>Spill-ID</label>
+    <label>Spill-ID</label>
 
-        <input
-            id="editGameId"
-            value="${gameId}"
-        >
+    <input
+        id="editGameId"
+        value="${gameId}"
+    >
 
-        <label>Beskrivelse</label>
+    <label>Beskrivelse</label>
 
-        <input
-            id="editTitle"
-            value="${title}"
-        >
+    <input
+        id="editTitle"
+        value="${title}"
+    >
 
-        <button
-            id="saveMetaBtn"
-        >
-            Lagre informasjon
-        </button>
+    <button id="saveMetaBtn">
+        💾 Lagre
+    </button>
 
-    </div>
+</div>
 
-    <div class="header-buttons">
+<div class="header-buttons">
 
-        <button
-            class="pdf-btn"
-            id="pdfBtn"
-        >
-            Last ned PDF av kortstokk
-        </button>
+    <button
+        class="pdf-btn"
+        id="pdfBtn"
+    >
+        Last ned PDF av kortstokk
+    </button>
 
-        <button
-            class="remove-set-btn"
-            id="deleteSetBtn"
-        >
-            Slett kortstokk
-        </button>
+    <button
+        class="remove-set-btn"
+        id="deleteSetBtn"
+    >
+        Slett kortstokk
+    </button>
 
-    </div>
+</div>
+
 `;
     document
         .getElementById("pdfBtn")
