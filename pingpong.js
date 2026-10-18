@@ -768,29 +768,25 @@ async function sendAnswer(card,event){
             currentMatch.player1;
 
         await updateDoc(
+    doc(
+        db,
+        "matches",
+        myMatchId
+    ),
+    {
+        score1,
+        score2,
 
-            doc(
-                db,
-                "matches",
-                myMatchId
-            ),
+        phase:"game-over",
 
-            {
-                score1,
-                score2,
+        winner,
 
-                cards:
-                remainingCards,
+        lastAnswerPlayer:userId,
 
-                currentQuestion:null,
+        lastAnswerCorrect:correct
+    }
+);
 
-                phase:"choose-question",
-
-                questionOwner:
-                nextOwner
-            }
-
-        );
 
     },1500);
 
