@@ -205,7 +205,7 @@ async function loadCards(){
 
     shuffle(cards);
 
-    return cards.slice(0,6);
+    return cards;
 }
 
 //////////////////////////////////////////////////
@@ -640,18 +640,16 @@ async function sendAnswer(card,event){
 
 
         if(correct){
+            const answerPlayer = currentMatch.questionOwner ===  currentMatch.player1 ? currentMatch.player2 : currentMatch.player1;
 
-            if(
-                currentMatch.questionOwner ===
-                currentMatch.player1
-            ){
+            if(answerPlayer === currentMatch.player1){
                 score1++;
             }
             else{
                 score2++;
             }
         }
-
+        
         const remainingCards =
 
             currentMatch.cards.filter(
