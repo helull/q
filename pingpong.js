@@ -680,7 +680,10 @@ async function sendAnswer(card,event){
             currentMatch.cards.filter(
                 c => c.id !== question.id
             );
-
+const nextOwner =
+    currentMatch.questionOwner === currentMatch.player1
+    ? currentMatch.player2
+    : currentMatch.player1;
         //////////////////////////////////////////////////
         // SPILL FERDIG
         //////////////////////////////////////////////////
