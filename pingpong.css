@@ -198,6 +198,7 @@ body.game-mode #selectedQuestion {
     white-space: normal;
     overflow: visible;
     text-overflow: unset;
+    white-space: pre-line;
 }
 
 body.game-mode #turnInfo {
@@ -330,6 +331,7 @@ body.game-mode .columns {
         min-height: 90px;
         font-size: 14px;
         padding: 10px;
+        white-space: pre-line;
     }
 
     body.game-mode #turnInfo {
