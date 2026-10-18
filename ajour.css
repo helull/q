@@ -139,3 +139,51 @@ label{
     }
 
 }
+.dataset-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 15px;
+}
+
+.dataset-meta label {
+
+    font-weight: bold;
+
+    margin-right: 4px;
+}
+
+.dataset-meta input {
+
+    width: 220px;
+
+    padding: 8px;
+}
+
+#saveMetaBtn {
+
+    background: #27ae60;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#saveMetaBtn:hover {
+
+    background: #219150;
+}
