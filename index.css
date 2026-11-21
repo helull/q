@@ -1,96 +1,23 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-
-    font-family: Arial, sans-serif;
-
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #4f46e5
-    );
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero {
-    width: min(1100px, 90%);
-    text-align: center;
-    color: white;
-}
-
-.hero h1 {
-    margin-bottom: 10px;
-    font-size: 3.5rem;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 40px;
-}
-
-.game-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
-
-.game-card {
-    display: block;
-
-    text-decoration: none;
-    color: inherit;
-
-    background: rgba(255, 255, 255, 0.15);
-
-    backdrop-filter: blur(10px);
-
-    border-radius: 20px;
-
-    padding: 40px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.25);
-}
-
-.icon {
-    font-size: 4rem;
-    margin-bottom: 15px;
-}
-
-.game-card h2 {
-    margin: 10px 0;
-    font-size: 2rem;
-}
-
-.game-card p {
-    margin: 0;
-    line-height: 1.5;
-    opacity: 0.95;
-}
-
-@media (max-width: 800px) {
-
-    .game-options {
-        grid-template-columns: 1fr;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17283c;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#f5f7fb}
+main{width:min(920px,calc(100% - 24px));margin:auto;padding:18px 0 30px}
+.back{display:inline-block;margin:0 0 10px;color:#48617b;text-decoration:none;font-size:.85rem;font-weight:650}
+.back:hover{text-decoration:underline}
+header{background:linear-gradient(125deg,#14283c,#294a67);color:white;border-radius:17px;padding:19px 21px;margin-bottom:16px;box-shadow:0 8px 20px #14283c15}
+h1{font-size:clamp(1.55rem,4vw,2.15rem);letter-spacing:-.04em;margin:0 0 4px}
+header p{margin:0;color:#d9e6f3;font-size:.83rem;line-height:1.35}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:126px;padding:13px 9px;border-radius:15px;text-align:center;text-decoration:none;border:1px solid transparent;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 9px 18px #15283c17}
+.card:focus-visible{outline:3px solid #15283c;outline-offset:3px}
+.card h2{font-size:clamp(1.08rem,4.8vw,1.65rem);font-weight:800;line-height:1.12;letter-spacing:-.03em;margin:0;overflow-wrap:anywhere}
+.description{font-size:.69rem;line-height:1.3;margin:6px 0 0;opacity:.82}
+.destination{font-size:.67rem;font-weight:750;margin-top:9px}
+.match{background:#e9f2ff;color:#173b72;border-color:#d6e5fb}
+.memory{background:#e6f6ef;color:#175c40;border-color:#d3ebdf}
+.pingpong{background:#f2eaff;color:#56318a;border-color:#e6d6fc}
+footer{text-align:center;color:#64748b;margin-top:18px;font-size:.72rem}
+@media(min-width:700px){.cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{min-height:145px;padding:18px 12px}}
+@media(max-width:380px){main{width:calc(100% - 18px)}.cards{gap:8px}.card{min-height:118px;padding:10px 6px}.card h2{font-size:1.06rem}.description{font-size:.65rem}}
+@media(prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
