@@ -1,3 +1,4 @@
+import { initCardsetPicker } from "./cardset-picker.js?v=1";
 import { initializeApp } from
 "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
@@ -323,3 +324,5 @@ delaySlider.addEventListener(
             seconds * 1000;
     }
 );
+
+initCardsetPicker(db, collection, getDocs);
