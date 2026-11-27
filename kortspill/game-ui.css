@@ -1,0 +1,42 @@
+/* Felles visuelt uttrykk for kortspillene */
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17283c;color-scheme:light;--accent:#294a67;--tint:#e9f2ff}
+body{font-family:inherit;background:#f5f7fb;color:#17283c;max-width:1200px;margin:auto;padding:clamp(10px,2vw,22px)}
+.game-nav{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px;font-size:.82rem;font-weight:650;color:#48617b}
+.game-nav a{color:inherit;text-decoration:none}.game-nav a:hover{text-decoration:underline}
+.game-heading{background:linear-gradient(125deg,#14283c,#294a67);color:white;border-radius:16px;padding:14px 18px;margin:0 0 12px;text-align:left;box-shadow:0 8px 20px #14283c15;font-size:clamp(1.35rem,4vw,1.9rem);letter-spacing:-.035em}
+button,input,select{font:inherit}
+button{border:0;border-radius:9px;background:var(--accent);color:white;font-weight:650;padding:10px 15px;cursor:pointer;min-height:40px}
+button:disabled{opacity:.5;cursor:not-allowed}
+input:not([type=range]),select{min-width:0;max-width:100%;border:1px solid #ccd8e5;border-radius:9px;background:white;color:#17283c;padding:10px 12px;min-height:40px}
+input[type=range]{accent-color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #759cc5;outline-offset:2px}
+h2,h3{font-size:1rem;letter-spacing:-.015em}
+#topbar,.controls-row,#topBar{background:white;border:1px solid #dce5ef;border-radius:13px;padding:12px;box-shadow:0 3px 12px #14283c08}
+body.match-game{--accent:#245b9e;--tint:#e9f2ff}
+body.memory-game{--accent:#247452;--tint:#e6f6ef}
+body.pingpong-game{--accent:#68439a;--tint:#f2eaff}
+.match-game #topbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.match-game #topbar h2{margin:0}.match-game #gameId{flex:1 1 130px}
+.match-game .container{padding:12px 0}.match-game .topbar{gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.match-game .topbar h1{font-size:clamp(1.15rem,4vw,1.6rem);text-align:left}
+.match-game #restartBtn{background:var(--accent)}
+.match-game .game{gap:clamp(8px,2vw,18px);grid-template-columns:repeat(2,minmax(0,1fr))}
+.match-game .column{min-width:0;gap:5px}.match-game .column h2{margin:5px 0}
+.match-game .card{border:1px solid #dce5ef;box-shadow:0 2px 6px #14283c0d;margin-bottom:8px;height:auto;min-height:80px;overflow-wrap:anywhere;font-size:clamp(.85rem,2.5vw,1rem)}
+.match-game .selected{background:#fde68a;border-color:#e5b842}.match-game .correct{background:#86efac;border-color:#58bd83}
+.memory-game .topbar{margin-bottom:10px}.memory-game .controls-row{width:100%;gap:10px}.memory-game #gameId{flex:1 1 110px}
+.memory-game #gameBoard{gap:clamp(6px,1.4vw,14px);height:auto;min-height: min(65vh,620px);grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,minmax(100px,1fr))}
+.memory-game .memory-card{min-width:0}.memory-game .card-front{background:linear-gradient(145deg,#247452,#175c40);font-size:clamp(1.5rem,5vw,3rem)}
+.memory-game .card-front,.memory-game .card-back{border-radius:12px;box-shadow:0 2px 7px #14283c18;padding:clamp(5px,1.4vw,15px);overflow-wrap:anywhere}
+.memory-game .card-back{font-size:clamp(.72rem,2vw,1.1rem)}
+.memory-game .delay-control{flex-wrap:wrap;font-size:.85rem}
+.pingpong-game #topBar{border:1px solid #dce5ef;background:white}
+.pingpong-game .card{border-width:1px;border-color:#dce5ef;border-left-width:5px;box-shadow:0 2px 7px #14283c12;border-radius:12px;overflow-wrap:anywhere}
+.pingpong-game .questionCard{border-left-color:#3976c4}.pingpong-game .answerCard{border-left-color:#319365}
+.pingpong-game #selectedQuestion{border:1px solid #dce5ef;border-radius:12px;background:white}
+.pingpong-game #selectedQuestion.active-question{border-left:5px solid #3976c4;background:#eef5ff}
+.pingpong-game #scoreBoard{border-color:#dce5ef}
+.pingpong-game.game-mode .game-nav{display:none}
+.pingpong-game.game-mode #gameHeader{border:1px solid #dce5ef;box-shadow:0 3px 12px #14283c12}
+.pingpong-game .answer-result{min-width:0;width:min(350px,90vw);font-size:clamp(1.5rem,6vw,2.5rem)}
+@media(max-width:600px){.match-game .card{padding:10px;min-height:76px}.match-game .topbar{gap:8px}.memory-game #gameBoard{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,minmax(95px,1fr));min-height:65vh}.memory-game .delay-control{width:100%}.pingpong-game.game-mode #gameHeader{flex-wrap:wrap}.pingpong-game.game-mode #selectedQuestion{min-width:0}.pingpong-game.game-mode #scoreBoard{flex-shrink:0}}
