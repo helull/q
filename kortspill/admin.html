@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Opprett kortspill</title>
+
+<link rel="stylesheet" href="admin.css">
+    
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Opprett kortstokk for nytt spill</h1>
+
+    <div class="editor-layout">
+
+        <div class="editor-panel">
+
+<div class="top-fields">
+
+    <div>
+        <label>Spill-ID</label>
+        <input id="gameId"
+               placeholder="...som også elevene må velge">
+    </div>
+
+    <div>
+        <label>Tittel</label>
+        <input id="title"
+               placeholder="f.eks 'Spansk-gloser, sett 1'">
+    </div>
+
+</div>
+
+            <label>Lim inn (KI-)data</label>
+            <span> Du kan lime inn spørsmål/svar i nesten hvilket som helst format. Systemet prøver automatisk å tolke innholdet. Bruk gjerne KI!
+
+    <button
+        type="button"
+        id="aiPromptBtn"
+        class="mini-btn">
+        💡 KI-tips
+    </button>
+</span>
+<div id="aiPromptBox" class="ai-prompt-box hidden">
+
+    <h3>Eksempel på prompt til KI</h3>
+
+    <textarea id="aiPromptText" readonly>
+Lag [TALL] spørsmål og svar om temaet [SETT INN TEMA].[Lim evt inn et bilde av relevant fagstoff...].
+
+Svarene skal være korte og presise. Ingen spørsmål skal være slik at flere av spørsmålene har samme svar! Men det er fint om svarene likner litt på hverandre.
+
+Returner resultatet på formatet:
+
+Spørsmål | Svar
+
+Eksempel:
+
+Hva er hovedstaden i Spania? | Madrid
+Hva heter Spanias nasjonalsang? | Marcha Real
+Hva er Spanias største by? | Madrid
+    </textarea>
+
+    <div class="button-row">
+
+        <button id="copyPromptBtn">
+            📋 Kopier tekst
+        </button>
+
+        <button id="closePromptBtn">
+            Lukk
+        </button>
+
+    </div>
+
+</div>
+
+            <textarea id="sourceText" rows="6" placeholder="Spørsmål|Svar"></textarea>
+
+<div class="button-row">
+
+    <button id="saveBtn">
+        Lagre kortstokk
+    </button>
+
+    <button
+        type="button"
+        id="editBtn"
+        onclick="location.href='ajour.html'">
+
+        Endre en annen kortstokk
+
+    </button>
+
+</div>
+
+            <div id="status"></div>
+
+        </div>
+
+        <div class="preview-panel">
+
+            <h2>Forhåndsvisning</h2>
+
+            <div id="preview"></div>
+
+        </div>
+
+    </div>
+
+</div>
+`
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
