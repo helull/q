@@ -40,3 +40,10 @@ body.pingpong-game{--accent:#68439a;--tint:#f2eaff}
 .pingpong-game.game-mode #gameHeader{border:1px solid #dce5ef;box-shadow:0 3px 12px #14283c12}
 .pingpong-game .answer-result{min-width:0;width:min(350px,90vw);font-size:clamp(1.5rem,6vw,2.5rem)}
 @media(max-width:600px){.match-game .card{padding:10px;min-height:76px}.match-game .topbar{gap:8px}.memory-game #gameBoard{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,minmax(95px,1fr));min-height:65vh}.memory-game .delay-control{width:100%}.pingpong-game.game-mode #gameHeader{flex-wrap:wrap}.pingpong-game.game-mode #selectedQuestion{min-width:0}.pingpong-game.game-mode #scoreBoard{flex-shrink:0}}
+
+.cardset-picker{display:flex;flex:1 1 290px;gap:8px;flex-wrap:wrap;align-items:center;min-width:0;max-width:100%}
+.cardset-picker select{flex:2 1 180px;min-width:0;width:0}
+.cardset-picker input#gameId{flex:1 1 120px;width:0;min-width:0}
+.cardset-picker small{flex-basis:100%;color:#8a541a;font-size:.8rem}
+.cardset-picker small:empty{display:none}
+@media(max-width:600px){.cardset-picker{flex-basis:100%;width:100%}.cardset-picker select,.cardset-picker input#gameId{flex:1 1 100%;width:100%}}
