@@ -1,3 +1,4 @@
+import { initCardsetPicker } from "./cardset-picker.js?v=1";
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
@@ -1209,4 +1210,4 @@ function showAnswerResult(correct) {
     }, 1500);
 }
 
-loadGameIds();
+initCardsetPicker(db, collection, getDocs);
