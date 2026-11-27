@@ -1,0 +1,946 @@
+[
+  {
+    "id": "T001",
+    "topic": 1,
+    "level": 2,
+    "question": "Hvilken side er hypotenusen?",
+    "options": [
+      "AB",
+      "AC",
+      "BC",
+      "Alle"
+    ],
+    "correct": 2,
+    "explanation": "Hypotenusen ligger mot den rette vinkelen.",
+    "figure": "right",
+    "active": true
+  },
+  {
+    "id": "T002",
+    "topic": 1,
+    "level": 2,
+    "question": "Sett fra vinkel B: hvilken side er motstående katet?",
+    "options": [
+      "AB",
+      "AC",
+      "BC",
+      "Ingen"
+    ],
+    "correct": 1,
+    "explanation": "AC ligger mot vinkel B.",
+    "figure": "right",
+    "active": true
+  },
+  {
+    "id": "T003",
+    "topic": 1,
+    "level": 2,
+    "question": "Sett fra vinkel B: hvilken side er hosliggende katet?",
+    "options": [
+      "AC",
+      "BC",
+      "AB",
+      "Ingen"
+    ],
+    "correct": 2,
+    "explanation": "AB ligger inntil B og er en katet.",
+    "figure": "right",
+    "active": true
+  },
+  {
+    "id": "T004",
+    "topic": 1,
+    "level": 2,
+    "question": "Sett fra vinkel C: hvilken side er motstående katet?",
+    "options": [
+      "AB",
+      "AC",
+      "BC",
+      "Ingen"
+    ],
+    "correct": 0,
+    "explanation": "AB ligger mot C.",
+    "figure": "right",
+    "active": true
+  },
+  {
+    "id": "T005",
+    "topic": 1,
+    "level": 2,
+    "question": "Sett fra vinkel C: hvilken side er hosliggende katet?",
+    "options": [
+      "AB",
+      "AC",
+      "BC",
+      "Ingen"
+    ],
+    "correct": 1,
+    "explanation": "AC ligger inntil C og er en katet.",
+    "figure": "right",
+    "active": true
+  },
+  {
+    "id": "T006",
+    "topic": 1,
+    "level": 2,
+    "question": "Hva er vinkelsummen i en trekant?",
+    "options": [
+      "90°",
+      "180°",
+      "270°",
+      "360°"
+    ],
+    "correct": 1,
+    "explanation": "Summen er alltid 180°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T007",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 25° og 65°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "89",
+      "95",
+      "90",
+      "92"
+    ],
+    "correct": 2,
+    "explanation": "180 − 25 − 65 = 90°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T008",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 30° og 68°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "84",
+      "81",
+      "87",
+      "82"
+    ],
+    "correct": 3,
+    "explanation": "180 − 30 − 68 = 82°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T009",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 35° og 71°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "74",
+      "76",
+      "73",
+      "79"
+    ],
+    "correct": 0,
+    "explanation": "180 − 35 − 71 = 74°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T010",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 40° og 74°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "71",
+      "66",
+      "68",
+      "65"
+    ],
+    "correct": 1,
+    "explanation": "180 − 40 − 74 = 66°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T011",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 45° og 77°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "57",
+      "63",
+      "58",
+      "60"
+    ],
+    "correct": 2,
+    "explanation": "180 − 45 − 77 = 58°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T012",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 50° og 80°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "52",
+      "49",
+      "55",
+      "50"
+    ],
+    "correct": 3,
+    "explanation": "180 − 50 − 80 = 50°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T013",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 55° og 83°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "42",
+      "44",
+      "41",
+      "47"
+    ],
+    "correct": 0,
+    "explanation": "180 − 55 − 83 = 42°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T014",
+    "topic": 1,
+    "level": 2,
+    "question": "To vinkler er 60° og 86°. Finn den tredje vinkelen i grader.",
+    "options": [
+      "39",
+      "34",
+      "36",
+      "33"
+    ],
+    "correct": 1,
+    "explanation": "180 − 60 − 86 = 34°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T015",
+    "topic": 2,
+    "level": 2,
+    "question": "Katetene er 3 cm og 4 cm. Finn hypotenusen i cm.",
+    "options": [
+      "4",
+      "10",
+      "5",
+      "7"
+    ],
+    "correct": 2,
+    "explanation": "√(3² + 4²) = 5.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T016",
+    "topic": 2,
+    "level": 2,
+    "question": "Hypotenusen er 5 cm og én katet er 3 cm. Finn den andre kateten.",
+    "options": [
+      "6",
+      "3",
+      "9",
+      "4"
+    ],
+    "correct": 3,
+    "explanation": "√(5² − 3²) = 4 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T017",
+    "topic": 2,
+    "level": 2,
+    "question": "Katetene er 5 cm og 12 cm. Finn hypotenusen i cm.",
+    "options": [
+      "13",
+      "15",
+      "12",
+      "18"
+    ],
+    "correct": 0,
+    "explanation": "√(5² + 12²) = 13.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T018",
+    "topic": 2,
+    "level": 2,
+    "question": "Hypotenusen er 13 cm og én katet er 5 cm. Finn den andre kateten.",
+    "options": [
+      "17",
+      "12",
+      "14",
+      "11"
+    ],
+    "correct": 1,
+    "explanation": "√(13² − 5²) = 12 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T019",
+    "topic": 2,
+    "level": 2,
+    "question": "Katetene er 6 cm og 8 cm. Finn hypotenusen i cm.",
+    "options": [
+      "9",
+      "15",
+      "10",
+      "12"
+    ],
+    "correct": 2,
+    "explanation": "√(6² + 8²) = 10.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T020",
+    "topic": 2,
+    "level": 2,
+    "question": "Hypotenusen er 10 cm og én katet er 6 cm. Finn den andre kateten.",
+    "options": [
+      "10",
+      "7",
+      "13",
+      "8"
+    ],
+    "correct": 3,
+    "explanation": "√(10² − 6²) = 8 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T021",
+    "topic": 2,
+    "level": 2,
+    "question": "Katetene er 8 cm og 15 cm. Finn hypotenusen i cm.",
+    "options": [
+      "17",
+      "19",
+      "16",
+      "22"
+    ],
+    "correct": 0,
+    "explanation": "√(8² + 15²) = 17.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T022",
+    "topic": 2,
+    "level": 2,
+    "question": "Hypotenusen er 17 cm og én katet er 8 cm. Finn den andre kateten.",
+    "options": [
+      "20",
+      "15",
+      "17",
+      "14"
+    ],
+    "correct": 1,
+    "explanation": "√(17² − 8²) = 15 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T023",
+    "topic": 2,
+    "level": 2,
+    "question": "Katetene er 9 cm og 12 cm. Finn hypotenusen i cm.",
+    "options": [
+      "14",
+      "20",
+      "15",
+      "17"
+    ],
+    "correct": 2,
+    "explanation": "√(9² + 12²) = 15.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T024",
+    "topic": 2,
+    "level": 2,
+    "question": "Hypotenusen er 15 cm og én katet er 9 cm. Finn den andre kateten.",
+    "options": [
+      "14",
+      "11",
+      "17",
+      "12"
+    ],
+    "correct": 3,
+    "explanation": "√(15² − 9²) = 12 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T025",
+    "topic": 2,
+    "level": 2,
+    "question": "Katetene er 7 cm og 24 cm. Finn hypotenusen i cm.",
+    "options": [
+      "25",
+      "27",
+      "24",
+      "30"
+    ],
+    "correct": 0,
+    "explanation": "√(7² + 24²) = 25.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T026",
+    "topic": 2,
+    "level": 2,
+    "question": "Hypotenusen er 25 cm og én katet er 7 cm. Finn den andre kateten.",
+    "options": [
+      "29",
+      "24",
+      "26",
+      "23"
+    ],
+    "correct": 1,
+    "explanation": "√(25² − 7²) = 24 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T027",
+    "topic": 2,
+    "level": 2,
+    "question": "I en 30°–60°–90°-trekant er hypotenusen 8 cm. Hvor lang er siden mot 30°?",
+    "options": [
+      "3",
+      "9",
+      "4",
+      "6"
+    ],
+    "correct": 2,
+    "explanation": "Siden mot 30° er halvparten av hypotenusen.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T028",
+    "topic": 2,
+    "level": 2,
+    "question": "I en 30°–60°–90°-trekant er hypotenusen 12 cm. Hvor lang er siden mot 30°?",
+    "options": [
+      "8",
+      "5",
+      "11",
+      "6"
+    ],
+    "correct": 3,
+    "explanation": "Siden mot 30° er halvparten av hypotenusen.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T029",
+    "topic": 2,
+    "level": 2,
+    "question": "I en 30°–60°–90°-trekant er hypotenusen 18 cm. Hvor lang er siden mot 30°?",
+    "options": [
+      "9",
+      "11",
+      "8",
+      "14"
+    ],
+    "correct": 0,
+    "explanation": "Siden mot 30° er halvparten av hypotenusen.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T030",
+    "topic": 2,
+    "level": 2,
+    "question": "I en 30°–60°–90°-trekant er hypotenusen 24 cm. Hvor lang er siden mot 30°?",
+    "options": [
+      "17",
+      "12",
+      "14",
+      "11"
+    ],
+    "correct": 1,
+    "explanation": "Siden mot 30° er halvparten av hypotenusen.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T031",
+    "topic": 2,
+    "level": 2,
+    "question": "Korteste katet i en 30°–60°–90°-trekant er 5 cm. Hva er lengste katet?",
+    "options": [
+      "10 cm",
+      "5√3 cm",
+      "5√2 cm",
+      "15 cm"
+    ],
+    "correct": 1,
+    "explanation": "Sideforholdet er 1 : √3 : 2.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T032",
+    "topic": 2,
+    "level": 2,
+    "question": "Hvilken vinkel ligger mot den lengste siden?",
+    "options": [
+      "Den minste",
+      "Den største",
+      "Alltid 30°",
+      "Alltid 60°"
+    ],
+    "correct": 1,
+    "explanation": "Største vinkel ligger mot lengste side.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T033",
+    "topic": 2,
+    "level": 2,
+    "question": "En rettvinklet trekant har én vinkel på 30°. Hva er den siste?",
+    "options": [
+      "45°",
+      "90°",
+      "60°",
+      "120°"
+    ],
+    "correct": 2,
+    "explanation": "180° − 90° − 30° = 60°.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T034",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 6 cm og den vinkelrette høyden er 3 cm. Finn arealet i cm².",
+    "options": [
+      "14",
+      "9",
+      "11",
+      "8"
+    ],
+    "correct": 1,
+    "explanation": "6 · 3 / 2 = 9 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T035",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 9 cm² og grunnlinje 6 cm. Finn høyden i cm.",
+    "options": [
+      "2",
+      "8",
+      "3",
+      "5"
+    ],
+    "correct": 2,
+    "explanation": "2 · 9 / 6 = 3 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T036",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 8 cm og den vinkelrette høyden er 4 cm. Finn arealet i cm².",
+    "options": [
+      "18",
+      "15",
+      "21",
+      "16"
+    ],
+    "correct": 3,
+    "explanation": "8 · 4 / 2 = 16 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T037",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 16 cm² og grunnlinje 8 cm. Finn høyden i cm.",
+    "options": [
+      "4",
+      "6",
+      "3",
+      "9"
+    ],
+    "correct": 0,
+    "explanation": "2 · 16 / 8 = 4 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T038",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 10 cm og den vinkelrette høyden er 5 cm. Finn arealet i cm².",
+    "options": [
+      "30",
+      "25",
+      "27",
+      "24"
+    ],
+    "correct": 1,
+    "explanation": "10 · 5 / 2 = 25 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T039",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 25 cm² og grunnlinje 10 cm. Finn høyden i cm.",
+    "options": [
+      "4",
+      "10",
+      "5",
+      "7"
+    ],
+    "correct": 2,
+    "explanation": "2 · 25 / 10 = 5 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T040",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 12 cm og den vinkelrette høyden er 6 cm. Finn arealet i cm².",
+    "options": [
+      "38",
+      "35",
+      "41",
+      "36"
+    ],
+    "correct": 3,
+    "explanation": "12 · 6 / 2 = 36 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T041",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 36 cm² og grunnlinje 12 cm. Finn høyden i cm.",
+    "options": [
+      "6",
+      "8",
+      "5",
+      "11"
+    ],
+    "correct": 0,
+    "explanation": "2 · 36 / 12 = 6 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T042",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 14 cm og den vinkelrette høyden er 7 cm. Finn arealet i cm².",
+    "options": [
+      "54",
+      "49",
+      "51",
+      "48"
+    ],
+    "correct": 1,
+    "explanation": "14 · 7 / 2 = 49 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T043",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 49 cm² og grunnlinje 14 cm. Finn høyden i cm.",
+    "options": [
+      "6",
+      "12",
+      "7",
+      "9"
+    ],
+    "correct": 2,
+    "explanation": "2 · 49 / 14 = 7 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T044",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 16 cm og den vinkelrette høyden er 8 cm. Finn arealet i cm².",
+    "options": [
+      "66",
+      "63",
+      "69",
+      "64"
+    ],
+    "correct": 3,
+    "explanation": "16 · 8 / 2 = 64 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T045",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 64 cm² og grunnlinje 16 cm. Finn høyden i cm.",
+    "options": [
+      "8",
+      "10",
+      "7",
+      "13"
+    ],
+    "correct": 0,
+    "explanation": "2 · 64 / 16 = 8 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T046",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 18 cm og den vinkelrette høyden er 9 cm. Finn arealet i cm².",
+    "options": [
+      "86",
+      "81",
+      "83",
+      "80"
+    ],
+    "correct": 1,
+    "explanation": "18 · 9 / 2 = 81 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T047",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 81 cm² og grunnlinje 18 cm. Finn høyden i cm.",
+    "options": [
+      "8",
+      "14",
+      "9",
+      "11"
+    ],
+    "correct": 2,
+    "explanation": "2 · 81 / 18 = 9 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T048",
+    "topic": 3,
+    "level": 2,
+    "question": "Grunnlinjen er 20 cm og den vinkelrette høyden er 10 cm. Finn arealet i cm².",
+    "options": [
+      "102",
+      "99",
+      "105",
+      "100"
+    ],
+    "correct": 3,
+    "explanation": "20 · 10 / 2 = 100 cm².",
+    "figure": "area",
+    "active": true
+  },
+  {
+    "id": "T049",
+    "topic": 3,
+    "level": 2,
+    "question": "En trekant har areal 100 cm² og grunnlinje 20 cm. Finn høyden i cm.",
+    "options": [
+      "10",
+      "12",
+      "9",
+      "15"
+    ],
+    "correct": 0,
+    "explanation": "2 · 100 / 20 = 10 cm.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T050",
+    "topic": 3,
+    "level": 2,
+    "question": "To sider er 8 cm og 10 cm, med 30° mellom dem. Finn arealet.",
+    "options": [
+      "40 cm²",
+      "20 cm²",
+      "80 cm²",
+      "18 cm²"
+    ],
+    "correct": 1,
+    "explanation": "Høyden mot 10 cm er 8 · sin 30° = 4 cm. Areal = 20 cm².",
+    "figure": "angle",
+    "active": true
+  },
+  {
+    "id": "T051",
+    "topic": 3,
+    "level": 2,
+    "question": "To sider er 12 cm og 6 cm, med 30° mellom dem. Finn arealet.",
+    "options": [
+      "36 cm²",
+      "72 cm²",
+      "18 cm²",
+      "9 cm²"
+    ],
+    "correct": 2,
+    "explanation": "Areal = ½ · 12 · 6 · sin 30° = 18 cm².",
+    "figure": "angle",
+    "active": true
+  },
+  {
+    "id": "T052",
+    "topic": 3,
+    "level": 2,
+    "question": "Hvilken høyde skal brukes når toppen ligger utenfor grunnlinjen?",
+    "options": [
+      "Den skrå siden",
+      "Den vinkelrette avstanden til grunnlinjens forlengelse",
+      "Den lengste siden",
+      "Halve grunnlinjen"
+    ],
+    "correct": 1,
+    "explanation": "Høyden står vinkelrett på grunnlinjen.",
+    "figure": "outside",
+    "active": true
+  },
+  {
+    "id": "T053",
+    "topic": 3,
+    "level": 2,
+    "question": "Sidene er 5, 5 og 6 cm. Finn omkretsen i cm.",
+    "options": [
+      "16",
+      "18",
+      "15",
+      "21"
+    ],
+    "correct": 0,
+    "explanation": "Legg sammen alle tre sidene.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T054",
+    "topic": 3,
+    "level": 2,
+    "question": "Sidene er 7, 8 og 9 cm. Finn omkretsen i cm.",
+    "options": [
+      "29",
+      "24",
+      "26",
+      "23"
+    ],
+    "correct": 1,
+    "explanation": "Legg sammen alle tre sidene.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T055",
+    "topic": 3,
+    "level": 2,
+    "question": "Sidene er 3, 4 og 5 cm. Finn omkretsen i cm.",
+    "options": [
+      "11",
+      "17",
+      "12",
+      "14"
+    ],
+    "correct": 2,
+    "explanation": "Legg sammen alle tre sidene.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T056",
+    "topic": 3,
+    "level": 2,
+    "question": "Sidene er 10, 10 og 12 cm. Finn omkretsen i cm.",
+    "options": [
+      "34",
+      "31",
+      "37",
+      "32"
+    ],
+    "correct": 3,
+    "explanation": "Legg sammen alle tre sidene.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T057",
+    "topic": 1,
+    "level": 2,
+    "question": "Hvilke lengder kan danne en trekant?",
+    "options": [
+      "2, 3, 6",
+      "1, 2, 3",
+      "4, 5, 6",
+      "2, 2, 5"
+    ],
+    "correct": 2,
+    "explanation": "Summen av de to korteste må være større enn den lengste.",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T058",
+    "topic": 3,
+    "level": 2,
+    "question": "En likebeint trekant har sider 5, 5 og 6 cm. Finn arealet.",
+    "options": [
+      "15 cm²",
+      "12 cm²",
+      "30 cm²",
+      "10 cm²"
+    ],
+    "correct": 1,
+    "explanation": "Høyden er √(5² − 3²) = 4 cm. Arealet er 6 · 4 / 2 = 12 cm².",
+    "figure": "",
+    "active": true
+  },
+  {
+    "id": "T059",
+    "topic": 1,
+    "level": 2,
+    "question": "En likebeint trekant har toppvinkel 40°. Hvor stor er hver grunnvinkel?",
+    "options": [
+      "40°",
+      "60°",
+      "70°",
+      "80°"
+    ],
+    "correct": 2,
+    "explanation": "(180° − 40°) / 2 = 70°.",
+    "figure": "",
+    "active": true
+  }
+]
